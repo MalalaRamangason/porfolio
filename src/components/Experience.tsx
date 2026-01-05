@@ -5,6 +5,17 @@ import { Briefcase } from "lucide-react";
 const Experience = () => {
   const experiences = [
     {
+      company: "Vanilla Pay International – Fintech (Madagascar)",
+      position: "Backend Developer / ERP Intern",
+      duration: "October 2025 - December 2025",
+      achievements: [
+        "Participated in the implementation and stabilization of Frappe / ERPNext with Docker",
+        "Customized ERP system for legal data requirements and compliance",
+        "Utilized Python scripts for automation and data processing",
+        "Developed a FX microservice for exchange rate management in a fintech environment"
+      ]
+    },
+    {
       company: "Ministry of Economy and Finance Madagascar",
       position: "Software Developer Intern",
       duration: "April 2025 - July 2025",
@@ -17,7 +28,7 @@ const Experience = () => {
     {
       company: "42 School Madagascar",
       position: "Piscine Discovery Python Participant",
-      duration: "March 2025 - March 2025",
+      duration: "March 2025",
       achievements: [
         "Completed a discovery 1-week intensive coding bootcamp focused on Python programming",
       ]

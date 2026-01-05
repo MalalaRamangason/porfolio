@@ -20,7 +20,8 @@ const Skills = () => {
       icon: <Server className="w-6 h-6" />,
       skills: [
         { name: "Java", level: "Intermediate" },
-        { name: "Spring Boot", level: "Intermediate" }
+        { name: "Spring Boot", level: "Intermediate" },
+        { name: "Python", level: "Intermediate" }
       ]
     },
     {
@@ -31,10 +32,13 @@ const Skills = () => {
       ]
     },
     {
-      title: "Version Control",
+      title: "DevOps & Tools",
       icon: <GitBranch className="w-6 h-6" />,
       skills: [
-        { name: "Git", level: "Intermediate" }
+        { name: "Git", level: "Intermediate" },
+        { name: "GitHub", level: "Intermediate" },
+        { name: "GitLab", level: "Intermediate" },
+        { name: "Docker", level: "Intermediate" }
       ]
     }
   ];
