@@ -1,28 +1,31 @@
 import { Badge } from "@/components/ui/badge";
-import { ExternalLink, Folder } from "lucide-react";
+import { ExternalLink, Folder, AppWindow, Link2, UtensilsCrossed } from "lucide-react";
 
 const Projects = () => {
   const projects = [
     {
       title: "Appistery",
+      icon: AppWindow,
       problem: "Finding quality apps across multiple stores is time-consuming and overwhelming for users.",
       solution: "A curated discovery platform that aggregates the best applications with intelligent filtering and personalized recommendations.",
       categories: ["Culture", "Productivity"],
-      url: "https://appistery.vercel.app/"
+      url: "https://appistery-inc.vercel.app/"
     },
     {
       title: "Tiny",
+      icon: Link2,
       problem: "Long URLs are difficult to share and track across different platforms and marketing campaigns.",
       solution: "A modern URL shortener with analytics dashboard, custom aliases, and QR code generation for seamless link management.",
       categories: ["Productivity", "Tools"],
-      url: "https://tiny-seven.vercel.app/"
+      url: "https://tinyly.app/"
     },
     {
       title: "Ro",
+      icon: UtensilsCrossed,
       problem: "The daily challenge for households to vary meals, choose today's dish, and organize groceries stress-free.",
       solution: "A home culinary assistant that simplifies automatic meal planning and grocery lists, to eat local with love.",
       categories: ["FoodTech", "Lifestyle"],
-      url: "https://ro-app.vercel.app/"
+      url: "https://www.laoka.me/"
     }
   ];
 
@@ -66,9 +69,16 @@ const Projects = () => {
                   
                   {/* Header */}
                   <div className="mb-6">
-                    <h3 className="text-2xl font-bold text-gray-900 group-hover:text-blue-600 transition-colors duration-300">
-                      {project.title}
-                    </h3>
+                    <div className="flex items-center gap-3">
+                      {/* Project Icon */}
+                      <div className="flex-shrink-0 w-12 h-12 flex items-center justify-center rounded-xl bg-gradient-to-br from-blue-600 to-blue-700 text-white shadow-md group-hover:scale-110 group-hover:rotate-3 transition-all duration-300">
+                        <project.icon className="w-6 h-6" />
+                      </div>
+                      {/* Project Title */}
+                      <h3 className="text-2xl font-bold text-gray-900 group-hover:text-blue-600 transition-colors duration-300">
+                        {project.title}
+                      </h3>
+                    </div>
                   </div>
 
                   {/* Body */}
