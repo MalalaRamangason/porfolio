@@ -1,13 +1,18 @@
 import { Button } from "@/components/ui/button";
 import { Eye, Download } from "lucide-react";
+import { useState } from "react";
+import CVGameModal from "./CVGameModal";
 
 const Hero = () => {
+  const [isGameOpen, setIsGameOpen] = useState(false);
+
   const scrollToProjects = () => {
     document.getElementById('projects')?.scrollIntoView({ behavior: 'smooth' });
   };
 
   return (
-    <section className="min-h-screen flex items-center relative overflow-hidden bg-gradient-to-br from-[#0066cc] via-[#0080ff] to-[#0099ff] dark:from-gray-900 dark:via-blue-900 dark:to-gray-800">
+    <>
+      <section className="min-h-screen flex items-center relative overflow-hidden bg-gradient-to-br from-[#0066cc] via-[#0080ff] to-[#0099ff] dark:from-gray-900 dark:via-blue-900 dark:to-gray-800">
       {/* Particles/Stars Background */}
       <div className="absolute inset-0 overflow-hidden">
         {[...Array(50)].map((_, i) => (
@@ -41,7 +46,7 @@ const Hero = () => {
                   {/* Replace with your actual photo */}
                   <div className="w-full h-full rounded-full bg-gradient-to-br from-gray-200 to-gray-300 flex items-center justify-center text-gray-500 text-6xl font-bold overflow-hidden">
                     <img 
-                      src="/profile.jpg" 
+                      src="/Profile_picture.png" 
                       alt="Malala Ramangason"
                       className="w-full h-full object-cover rounded-full"
                       onError={(e) => {
@@ -99,19 +104,20 @@ const Hero = () => {
               <Button
                 variant="outline"
                 size="lg"
-                asChild
+                onClick={() => setIsGameOpen(true)}
                 className="border-2 border-white/90 bg-white/10 backdrop-blur-sm text-white hover:bg-white hover:text-blue-900 font-semibold px-8 py-6 text-base rounded-lg transition-all"
               >
-                <a href="/cv.pdf" download>
-                  <Download className="w-5 h-5 mr-2" />
-                  Download CV
-                </a>
+                <Download className="w-5 h-5 mr-2" />
+                Download CV
               </Button>
             </div>
           </div>
         </div>
       </div>
     </section>
+
+    <CVGameModal isOpen={isGameOpen} onClose={() => setIsGameOpen(false)} />
+    </>
   );
 };
 
