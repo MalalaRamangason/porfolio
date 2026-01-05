@@ -38,25 +38,41 @@ All colors MUST be HSL.
     --ring: 195 100% 50%;
 
     /* Ocean Theme Custom Variables */
-    --ocean-deep: 210 100% 15%;
+    --ocean-deep: 210 100% 15%; /* #1A365D - Bleu profond */
     --ocean-primary: 195 100% 50%;
     --ocean-light: 195 85% 65%;
     --ocean-mist: 195 50% 90%;
     --ocean-wave: 200 80% 45%;
+    --ocean-sky: 195 80% 70%; /* Bleu ciel */
+    --accent-pink: 340 82% 85%; /* Rose pastel pour accents */
+    
+    /* Glassmorphism Variables */
+    --glass-bg: rgba(255, 255, 255, 0.1);
+    --glass-border: rgba(255, 255, 255, 0.18);
+    --glass-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+    --glass-blur: blur(12px);
+    
+    /* Typography */
+    --font-serif: 'Playfair Display', 'Georgia', serif;
+    --font-sans: 'Inter', 'system-ui', sans-serif;
     
     /* Gradients */
     --gradient-ocean: linear-gradient(135deg, hsl(195 100% 50%), hsl(210 100% 15%));
     --gradient-wave: linear-gradient(90deg, hsl(195 85% 65%), hsl(195 100% 50%));
     --gradient-mist: linear-gradient(180deg, hsl(195 50% 90%), transparent);
+    --gradient-hero: linear-gradient(135deg, hsl(210 100% 15%) 0%, hsl(195 80% 70%) 50%, hsl(340 82% 85%) 100%);
+    --gradient-border: linear-gradient(90deg, hsl(195 100% 50%), hsl(340 82% 85%), hsl(195 100% 50%));
     
     /* Shadows */
     --shadow-ocean: 0 10px 40px -12px hsl(195 100% 50% / 0.3);
     --shadow-wave: 0 4px 20px -4px hsl(195 100% 50% / 0.2);
     --shadow-soft: 0 2px 10px -2px hsl(210 40% 8% / 0.1);
+    --shadow-glass: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
     
     /* Animations */
     --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     --transition-wave: all 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+    --transition-bounce: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
 
     --radius: 0.5rem;
 
@@ -153,6 +169,53 @@ All colors MUST be HSL.
   .animate-wave {
     animation: wave 8s ease-in-out infinite;
   }
+  
+  .animate-spin-slow {
+    animation: spin 20s linear infinite;
+  }
+  
+  .delay-500 {
+    animation-delay: 500ms;
+  }
+  
+  .delay-1000 {
+    animation-delay: 1000ms;
+  }
+  
+  .glass-morphism {
+    background: var(--glass-bg);
+    backdrop-filter: var(--glass-blur);
+    -webkit-backdrop-filter: var(--glass-blur);
+    border: 1px solid var(--glass-border);
+    box-shadow: var(--glass-shadow);
+  }
+  
+  .gradient-border {
+    position: relative;
+    background: linear-gradient(135deg, hsl(210 100% 15%), hsl(210 90% 20%));
+    background-clip: padding-box;
+  }
+  
+  .gradient-border::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    padding: 2px;
+    background: var(--gradient-border);
+    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    animation: gradient-rotate 3s linear infinite;
+  }
+  
+  .font-serif {
+    font-family: var(--font-serif);
+  }
+  
+  .font-sans {
+    font-family: var(--font-sans);
+  }
 }
 
 @keyframes float {
@@ -173,5 +236,26 @@ All colors MUST be HSL.
   }
   75% {
     transform: translateX(-10px) rotate(-1deg);
+  }
+}
+
+@keyframes gradient-rotate {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
   }
 }
