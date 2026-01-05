@@ -7,7 +7,7 @@ const Hero = () => {
   };
 
   return (
-    <section className="min-h-screen flex items-center relative overflow-hidden bg-gradient-to-br from-[#0066cc] via-[#0080ff] to-[#0099ff]">
+    <section className="min-h-screen flex items-center relative overflow-hidden bg-gradient-to-br from-[#0066cc] via-[#0080ff] to-[#0099ff] dark:from-gray-900 dark:via-blue-900 dark:to-gray-800">
       {/* Particles/Stars Background */}
       <div className="absolute inset-0 overflow-hidden">
         {[...Array(50)].map((_, i) => (

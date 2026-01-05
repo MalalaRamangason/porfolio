@@ -30,14 +30,14 @@ const Projects = () => {
   ];
 
   return (
-    <section id="projects" className="py-20 bg-gradient-to-br from-slate-50 to-blue-50">
+    <section id="projects" className="py-20 bg-gradient-to-br from-slate-50 to-blue-50 dark:from-gray-900 dark:to-gray-800">
       <div className="container mx-auto px-6">
         <div className="text-center mb-16">
           <div className="flex items-center justify-center gap-2 mb-4">
-            <Folder className="w-8 h-8 text-blue-600" />
-            <h2 className="text-4xl font-bold text-gray-900">Projects</h2>
+            <Folder className="w-8 h-8 text-blue-600 dark:text-blue-400" />
+            <h2 className="text-4xl font-bold text-gray-900 dark:text-white">Projects</h2>
           </div>
-          <p className="text-gray-600 text-lg max-w-2xl mx-auto">
+          <p className="text-gray-600 dark:text-gray-300 text-lg max-w-2xl mx-auto">
             Projects that solve real problems with creativity and innovation
           </p>
         </div>
@@ -52,14 +52,14 @@ const Projects = () => {
               className="group relative block"
             >
               {/* Glassmorphism Card */}
-              <div className="relative h-full bg-white/60 backdrop-blur-md rounded-2xl border border-white/40 shadow-lg hover:shadow-2xl transition-all duration-500 hover:scale-[1.02] hover:-translate-y-1 overflow-hidden">
+              <div className="relative h-full bg-white/60 dark:bg-gray-800/60 backdrop-blur-md rounded-2xl border border-white/40 dark:border-gray-700/40 shadow-lg hover:shadow-2xl transition-all duration-500 hover:scale-[1.02] hover:-translate-y-1 overflow-hidden">
                 
                 {/* Gradient overlay on hover */}
-                <div className="absolute inset-0 bg-gradient-to-br from-blue-500/5 to-pink-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                <div className="absolute inset-0 bg-gradient-to-br from-blue-500/5 to-pink-500/5 dark:from-blue-400/10 dark:to-pink-400/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
                 
                 {/* External link icon - top right */}
                 <div className="absolute top-4 right-4 z-10">
-                  <div className="w-8 h-8 flex items-center justify-center rounded-full bg-blue-600/10 text-blue-600 group-hover:bg-blue-600 group-hover:text-white transition-all duration-300 group-hover:scale-110 group-hover:rotate-12">
+                  <div className="w-8 h-8 flex items-center justify-center rounded-full bg-blue-600/10 dark:bg-blue-400/20 text-blue-600 dark:text-blue-400 group-hover:bg-blue-600 dark:group-hover:bg-blue-500 group-hover:text-white transition-all duration-300 group-hover:scale-110 group-hover:rotate-12">
                     <ExternalLink className="w-4 h-4" />
                   </div>
                 </div>
@@ -75,7 +75,7 @@ const Projects = () => {
                         <project.icon className="w-6 h-6" />
                       </div>
                       {/* Project Title */}
-                      <h3 className="text-2xl font-bold text-gray-900 group-hover:text-blue-600 transition-colors duration-300">
+                      <h3 className="text-2xl font-bold text-gray-900 dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors duration-300">
                         {project.title}
                       </h3>
                     </div>
@@ -85,20 +85,20 @@ const Projects = () => {
                   <div className="space-y-4 mb-6 flex-grow">
                     {/* The Problem */}
                     <div>
-                      <h4 className="text-sm font-semibold text-gray-500 uppercase tracking-wider mb-2">
+                      <h4 className="text-sm font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-wider mb-2">
                         The Problem
                       </h4>
-                      <p className="text-gray-700 text-sm leading-relaxed">
+                      <p className="text-gray-700 dark:text-gray-300 text-sm leading-relaxed">
                         {project.problem}
                       </p>
                     </div>
 
                     {/* The Solution */}
-                    <div className="bg-gradient-to-br from-blue-50 to-pink-50 rounded-xl p-4 border border-blue-100/50">
-                      <h4 className="text-sm font-semibold text-blue-900 uppercase tracking-wider mb-2">
+                    <div className="bg-gradient-to-br from-blue-50 to-pink-50 dark:from-blue-900/30 dark:to-pink-900/30 rounded-xl p-4 border border-blue-100/50 dark:border-blue-800/50">
+                      <h4 className="text-sm font-semibold text-blue-900 dark:text-blue-300 uppercase tracking-wider mb-2">
                         The Solution
                       </h4>
-                      <p className="text-blue-900/90 text-sm leading-relaxed font-medium">
+                      <p className="text-blue-900/90 dark:text-blue-200 text-sm leading-relaxed font-medium">
                         {project.solution}
                       </p>
                     </div>
@@ -109,7 +109,7 @@ const Projects = () => {
                     {project.categories.map((category, i) => (
                       <Badge 
                         key={i}
-                        className="bg-blue-600/10 text-blue-700 border-blue-200/50 hover:bg-blue-600/20 transition-colors text-xs px-3 py-1"
+                        className="bg-blue-600/10 dark:bg-blue-400/20 text-blue-700 dark:text-blue-300 border-blue-200/50 dark:border-blue-700/50 hover:bg-blue-600/20 dark:hover:bg-blue-400/30 transition-colors text-xs px-3 py-1"
                       >
                         {category}
                       </Badge>

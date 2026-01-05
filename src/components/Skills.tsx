@@ -57,14 +57,14 @@ const Skills = () => {
   };
 
   return (
-    <section id="skills" className="py-20 bg-background">
+    <section id="skills" className="py-20 bg-background dark:bg-gray-900">
       <div className="container mx-auto px-6">
         <div className="text-center mb-16">
           <div className="flex items-center justify-center gap-2 mb-4">
-            <Code className="w-8 h-8 text-ocean-primary" />
-            <h2 className="text-4xl font-bold text-foreground">Technical Skills</h2>
+            <Code className="w-8 h-8 text-ocean-primary dark:text-blue-400" />
+            <h2 className="text-4xl font-bold text-foreground dark:text-white">Technical Skills</h2>
           </div>
-          <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
+          <p className="text-muted-foreground dark:text-gray-300 text-lg max-w-2xl mx-auto">
             Technologies and tools I work with to build modern applications
           </p>
         </div>
@@ -73,11 +73,11 @@ const Skills = () => {
           {skillCategories.map((category, index) => (
             <Card 
               key={index}
-              className="hover:shadow-wave transition-all duration-300 border-ocean-light/20 bg-card/80 backdrop-blur-sm"
+              className="hover:shadow-wave transition-all duration-300 border-ocean-light/20 dark:border-gray-700 bg-card/80 dark:bg-gray-800/80 backdrop-blur-sm"
             >
               <CardHeader>
-                <CardTitle className="text-xl text-ocean-deep flex items-center gap-3">
-                  <div className="p-2 bg-ocean-primary/10 rounded-lg text-ocean-primary">
+                <CardTitle className="text-xl text-ocean-deep dark:text-white flex items-center gap-3">
+                  <div className="p-2 bg-ocean-primary/10 dark:bg-blue-400/20 rounded-lg text-ocean-primary dark:text-blue-400">
                     {category.icon}
                   </div>
                   {category.title}
