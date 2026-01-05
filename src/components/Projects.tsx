@@ -19,9 +19,9 @@ const Projects = () => {
     },
     {
       title: "Ro",
-      problem: "Restaurant discovery lacks personalized experiences and real-time availability information.",
-      solution: "An intelligent restaurant recommendation app with real-time reservations, personalized suggestions, and social features.",
-      categories: ["FoodTech", "Social"],
+      problem: "The daily challenge for households to vary meals, choose today's dish, and organize groceries stress-free.",
+      solution: "A home culinary assistant that simplifies automatic meal planning and grocery lists, to eat local with love.",
+      categories: ["FoodTech", "Lifestyle"],
       url: "https://ro-app.vercel.app/"
     }
   ];
@@ -32,10 +32,10 @@ const Projects = () => {
         <div className="text-center mb-16">
           <div className="flex items-center justify-center gap-2 mb-4">
             <Folder className="w-8 h-8 text-blue-600" />
-            <h2 className="text-4xl font-bold text-gray-900">Réalisations</h2>
+            <h2 className="text-4xl font-bold text-gray-900">Projects</h2>
           </div>
           <p className="text-gray-600 text-lg max-w-2xl mx-auto">
-            Des projets qui résolvent de vrais problèmes avec créativité et innovation
+            Projects that solve real problems with creativity and innovation
           </p>
         </div>
 
@@ -73,20 +73,20 @@ const Projects = () => {
 
                   {/* Body */}
                   <div className="space-y-4 mb-6 flex-grow">
-                    {/* Le Problème */}
+                    {/* The Problem */}
                     <div>
                       <h4 className="text-sm font-semibold text-gray-500 uppercase tracking-wider mb-2">
-                        Le Problème
+                        The Problem
                       </h4>
                       <p className="text-gray-700 text-sm leading-relaxed">
                         {project.problem}
                       </p>
                     </div>
 
-                    {/* La Solution */}
+                    {/* The Solution */}
                     <div className="bg-gradient-to-br from-blue-50 to-pink-50 rounded-xl p-4 border border-blue-100/50">
                       <h4 className="text-sm font-semibold text-blue-900 uppercase tracking-wider mb-2">
-                        La Solution
+                        The Solution
                       </h4>
                       <p className="text-blue-900/90 text-sm leading-relaxed font-medium">
                         {project.solution}
