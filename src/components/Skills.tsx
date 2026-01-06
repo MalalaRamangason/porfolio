@@ -2,9 +2,25 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Code, Database, GitBranch, Server } from "lucide-react";
 import { useLanguage } from "@/contexts/LanguageContext";
+import { useState, useEffect } from "react";
 
 const Skills = () => {
   const { t } = useLanguage();
+  const [displayedText, setDisplayedText] = useState('');
+  const [currentIndex, setCurrentIndex] = useState(0);
+  
+  const fullText = `${t('skills_overview_title')}\n\n${t('skills_overview_desc')}`;
+
+  useEffect(() => {
+    if (currentIndex < fullText.length) {
+      const timeout = setTimeout(() => {
+        setDisplayedText(prev => prev + fullText[currentIndex]);
+        setCurrentIndex(prev => prev + 1);
+      }, 30); // Vitesse de frappe
+      return () => clearTimeout(timeout);
+    }
+  }, [currentIndex, fullText]);
+
   const skillCategories = [
     {
       title: t('skills_frontend'),
@@ -101,16 +117,33 @@ const Skills = () => {
           ))}
         </div>
 
-        {/* Skills Overview */}
-        <div className="mt-16 max-w-4xl mx-auto">
-          <Card className="bg-gradient-ocean text-white border-0">
-            <CardContent className="p-8 text-center">
-              <h3 className="text-2xl font-bold mb-4">{t('skills_overview_title')}</h3>
-              <p className="text-ocean-light text-lg leading-relaxed">
-                {t('skills_overview_desc')}
-              </p>
-            </CardContent>
-          </Card>
+        {/* Terminal-style Overview */}
+        <div className="mt-16 max-w-4xl mx-auto relative">
+          <div className="bg-gray-900 rounded-lg shadow-2xl overflow-hidden border border-gray-700 relative z-10">
+            {/* Terminal Header */}
+            <div className="bg-gray-800 px-4 py-3 flex items-center gap-2 border-b border-gray-700">
+              <div className="flex gap-2">
+                <div className="w-3 h-3 rounded-full bg-red-500"></div>
+                <div className="w-3 h-3 rounded-full bg-yellow-500"></div>
+                <div className="w-3 h-3 rounded-full bg-green-500"></div>
+              </div>
+              <span className="text-gray-400 text-sm font-mono ml-2">~/developer-profile</span>
+            </div>
+            
+            {/* Terminal Content */}
+            <div className="p-8 font-mono text-sm bg-gray-900">
+              <div className="flex items-start gap-2 mb-4">
+                <span className="text-green-400">$</span>
+                <span className="text-blue-400">cat</span>
+                <span className="text-gray-300">about.txt</span>
+              </div>
+              
+              <div className="text-gray-300 leading-relaxed whitespace-pre-wrap">
+                {displayedText}
+                <span className="inline-block w-2 h-4 bg-green-400 ml-1 animate-pulse"></span>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </section>

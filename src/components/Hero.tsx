@@ -1,12 +1,31 @@
 import { Button } from "@/components/ui/button";
 import { Eye, Download } from "lucide-react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import CVGameModal from "./CVGameModal";
 import { useLanguage } from "@/contexts/LanguageContext";
 
 const Hero = () => {
   const { t } = useLanguage();
   const [isGameOpen, setIsGameOpen] = useState(false);
+  const [isDark, setIsDark] = useState(false);
+
+  useEffect(() => {
+    // Détecte le mode dark initial
+    const checkDarkMode = () => {
+      setIsDark(document.documentElement.classList.contains('dark'));
+    };
+    
+    checkDarkMode();
+    
+    // Observer les changements de classe dark sur le HTML
+    const observer = new MutationObserver(checkDarkMode);
+    observer.observe(document.documentElement, {
+      attributes: true,
+      attributeFilter: ['class']
+    });
+    
+    return () => observer.disconnect();
+  }, []);
 
   const scrollToProjects = () => {
     document.getElementById('projects')?.scrollIntoView({ behavior: 'smooth' });
@@ -15,21 +34,43 @@ const Hero = () => {
   return (
     <>
       <section className="min-h-screen flex items-center relative overflow-hidden bg-gradient-to-br from-[#0066cc] via-[#0080ff] to-[#0099ff] dark:from-gray-900 dark:via-blue-900 dark:to-gray-800 pt-16 md:pt-0">
-      {/* Particles/Stars Background */}
-      <div className="absolute inset-0 overflow-hidden">
-        {[...Array(50)].map((_, i) => (
-          <div
-            key={i}
-            className="absolute w-1 h-1 bg-white rounded-full animate-pulse"
-            style={{
-              top: `${Math.random() * 100}%`,
-              left: `${Math.random() * 100}%`,
-              animationDelay: `${Math.random() * 3}s`,
-              opacity: Math.random() * 0.5 + 0.3
-            }}
-          />
-        ))}
-      </div>
+      {/* Particles/Stars Background - Mode Sombre */}
+      {isDark && (
+        <div className="absolute inset-0 overflow-hidden">
+          {[...Array(50)].map((_, i) => (
+            <div
+              key={i}
+              className="absolute w-1 h-1 bg-white rounded-full animate-pulse"
+              style={{
+                top: `${Math.random() * 100}%`,
+                left: `${Math.random() * 100}%`,
+                animationDelay: `${Math.random() * 3}s`,
+                opacity: Math.random() * 0.5 + 0.3
+              }}
+            />
+          ))}
+        </div>
+      )}
+
+      {/* Clouds Background - Mode Jour */}
+      {!isDark && (
+        <div className="absolute inset-0 overflow-hidden">
+          {[...Array(8)].map((_, i) => (
+            <div
+              key={i}
+              className="absolute bg-white/30 rounded-full blur-xl animate-float"
+              style={{
+                width: `${100 + Math.random() * 150}px`,
+                height: `${40 + Math.random() * 60}px`,
+                top: `${Math.random() * 80}%`,
+                left: `${Math.random() * 100}%`,
+                animationDelay: `${Math.random() * 5}s`,
+                animationDuration: `${15 + Math.random() * 10}s`
+              }}
+            />
+          ))}
+        </div>
+      )}
 
       {/* Decorative shapes */}
       <div className="absolute top-20 right-20 w-64 h-64 bg-white/5 rounded-full blur-3xl"></div>
