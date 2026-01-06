@@ -2,8 +2,10 @@ import { Button } from "@/components/ui/button";
 import { Eye, Download } from "lucide-react";
 import { useState } from "react";
 import CVGameModal from "./CVGameModal";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 const Hero = () => {
+  const { t } = useLanguage();
   const [isGameOpen, setIsGameOpen] = useState(false);
 
   const scrollToProjects = () => {
@@ -66,7 +68,7 @@ const Hero = () => {
           <div className="flex-1 text-white space-y-4 sm:space-y-6">
             {/* Greeting */}
             <p className="text-lg sm:text-xl lg:text-2xl font-light text-blue-100">
-              Hi I'm
+              {t('hero_greeting')}
             </p>
 
             {/* Name */}
@@ -76,18 +78,17 @@ const Hero = () => {
 
             {/* Title with emoji */}
             <h2 className="text-xl sm:text-2xl lg:text-3xl font-semibold text-blue-50">
-              Fullstack Developer & Problem Solver 👋
+              {t('hero_title')}
             </h2>
 
             {/* Subtitle */}
             <p className="text-lg lg:text-xl text-blue-100/90 font-light">
-              Frontend Developer about pixelect experiences.
+              {t('hero_subtitle')}
             </p>
 
             {/* Description */}
             <p className="text-base lg:text-lg text-blue-50/80 max-w-2xl leading-relaxed">
-              Craft beautiful responsive web applications using modern technologies. 
-              With keen eye for design for thoughtful experiences that users love.
+              {t('hero_description')}
             </p>
 
             {/* CTA Buttons */}
@@ -98,7 +99,7 @@ const Hero = () => {
                 className="bg-cyan-400 hover:bg-cyan-300 text-blue-900 font-semibold px-8 py-6 text-base rounded-lg transition-all shadow-lg shadow-cyan-500/30 hover:shadow-cyan-500/50"
               >
                 <Eye className="w-5 h-5 mr-2" />
-                View Projects
+                {t('hero_view_projects')}
               </Button>
 
               <Button
@@ -108,7 +109,7 @@ const Hero = () => {
                 className="border-2 border-white/90 bg-white/10 backdrop-blur-sm text-white hover:bg-white hover:text-blue-900 font-semibold px-8 py-6 text-base rounded-lg transition-all"
               >
                 <Download className="w-5 h-5 mr-2" />
-                Download CV
+                {t('hero_download_cv')}
               </Button>
             </div>
           </div>

@@ -1,7 +1,9 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Mail, Linkedin, Globe } from "lucide-react";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 const Contact = () => {
+  const { t } = useLanguage();
   return (
     <section id="contact" className="py-20 bg-gradient-ocean dark:bg-gradient-to-br dark:from-gray-900 dark:to-blue-900 relative overflow-hidden">
       {/* Background decoration */}
@@ -11,9 +13,9 @@ const Contact = () => {
       
       <div className="container mx-auto px-6 relative z-10">
         <div className="text-center mb-16">
-          <h2 className="text-4xl font-bold text-white dark:text-white mb-4">Let's Connect</h2>
+          <h2 className="text-4xl font-bold text-white dark:text-white mb-4">{t('contact_stay_in_touch')}</h2>
           <p className="text-ocean-light dark:text-blue-200 text-lg max-w-2xl mx-auto">
-            Ready to bring your ideas to life? Let's discuss your next project
+            {t('contact_ready_to_build')}
           </p>
         </div>
 
@@ -28,7 +30,7 @@ const Contact = () => {
                   </div>
                   <div>
                     <h3 className="font-semibold text-ocean-deep dark:text-white">LinkedIn</h3>
-                    <p className="text-muted-foreground dark:text-gray-300">Connect with me professionally</p>
+                    <p className="text-muted-foreground dark:text-gray-300">{t('contact_linkedin_desc')}</p>
                     <a 
                       href="https://linkedin.com/in/malala-dev" 
                       target="_blank" 
@@ -50,7 +52,7 @@ const Contact = () => {
                   </div>
                   <div>
                     <h3 className="font-semibold text-ocean-deep dark:text-white">Personal Website</h3>
-                    <p className="text-muted-foreground dark:text-gray-300">Explore more of my work</p>
+                    <p className="text-muted-foreground dark:text-gray-300">{t('contact_website_desc')}</p>
                     <a 
                       href="https://malala-ramangason.vercel.app" 
                       target="_blank" 
@@ -72,7 +74,7 @@ const Contact = () => {
                   </div>
                   <div>
                     <h3 className="font-semibold text-ocean-deep dark:text-white">Email</h3>
-                    <p className="text-muted-foreground dark:text-gray-300">Send me a direct message</p>
+                    <p className="text-muted-foreground dark:text-gray-300">{t('contact_email_desc')}</p>
                     <a 
                       href="mailto:malala@example.com"
                       className="text-ocean-primary dark:text-blue-400 hover:underline"

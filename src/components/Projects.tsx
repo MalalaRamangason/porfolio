@@ -1,33 +1,17 @@
 import { Badge } from "@/components/ui/badge";
 import { ExternalLink, Folder, AppWindow, Link2, UtensilsCrossed } from "lucide-react";
+import { useLanguage } from "@/contexts/LanguageContext";
+import { projectsData } from "@/lib/data";
 
 const Projects = () => {
-  const projects = [
-    {
-      title: "Appistery",
-      icon: AppWindow,
-      problem: "Finding quality apps across multiple stores is time-consuming and overwhelming for users.",
-      solution: "A curated discovery platform that aggregates the best applications with intelligent filtering and personalized recommendations.",
-      categories: ["Culture", "Productivity"],
-      url: "https://appistery-inc.vercel.app/"
-    },
-    {
-      title: "Tiny",
-      icon: Link2,
-      problem: "Long URLs are difficult to share and track across different platforms and marketing campaigns.",
-      solution: "A modern URL shortener with analytics dashboard, custom aliases, and QR code generation for seamless link management.",
-      categories: ["Productivity", "Tools"],
-      url: "https://tinyly.app/"
-    },
-    {
-      title: "Ro",
-      icon: UtensilsCrossed,
-      problem: "The daily challenge for households to vary meals, choose today's dish, and organize groceries stress-free.",
-      solution: "A home culinary assistant that simplifies automatic meal planning and grocery lists, to eat local with love.",
-      categories: ["FoodTech", "Lifestyle"],
-      url: "https://www.laoka.me/"
-    }
-  ];
+  const { t, language } = useLanguage();
+  const projects = projectsData[language];
+
+  const iconMap: { [key: string]: any } = {
+    'Appistery': AppWindow,
+    'Tiny': Link2,
+    'Ro': UtensilsCrossed
+  };
 
   return (
     <section id="projects" className="py-20 bg-gradient-to-br from-slate-50 to-blue-50 dark:from-gray-900 dark:to-gray-800">
@@ -35,10 +19,10 @@ const Projects = () => {
         <div className="text-center mb-16">
           <div className="flex items-center justify-center gap-2 mb-4">
             <Folder className="w-8 h-8 text-blue-600 dark:text-blue-400" />
-            <h2 className="text-4xl font-bold text-gray-900 dark:text-white">Projects</h2>
+            <h2 className="text-4xl font-bold text-gray-900 dark:text-white">{t('projects_title')}</h2>
           </div>
           <p className="text-gray-600 dark:text-gray-300 text-lg max-w-2xl mx-auto">
-            Projects that solve real problems with creativity and innovation
+            {t('projects_subtitle')}
           </p>
         </div>
 
@@ -72,7 +56,10 @@ const Projects = () => {
                     <div className="flex items-center gap-3">
                       {/* Project Icon */}
                       <div className="flex-shrink-0 w-12 h-12 flex items-center justify-center rounded-xl bg-gradient-to-br from-blue-600 to-blue-700 text-white shadow-md group-hover:scale-110 group-hover:rotate-3 transition-all duration-300">
-                        <project.icon className="w-6 h-6" />
+                        {(() => {
+                          const IconComponent = iconMap[project.title];
+                          return IconComponent ? <IconComponent className="w-6 h-6" /> : null;
+                        })()}
                       </div>
                       {/* Project Title */}
                       <h3 className="text-2xl font-bold text-gray-900 dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors duration-300">
@@ -86,7 +73,7 @@ const Projects = () => {
                     {/* The Problem */}
                     <div>
                       <h4 className="text-sm font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-wider mb-2">
-                        The Problem
+                        {t('projects_problem')}
                       </h4>
                       <p className="text-gray-700 dark:text-gray-300 text-sm leading-relaxed">
                         {project.problem}
@@ -96,7 +83,7 @@ const Projects = () => {
                     {/* The Solution */}
                     <div className="bg-gradient-to-br from-blue-50 to-pink-50 dark:from-blue-900/30 dark:to-pink-900/30 rounded-xl p-4 border border-blue-100/50 dark:border-blue-800/50">
                       <h4 className="text-sm font-semibold text-blue-900 dark:text-blue-300 uppercase tracking-wider mb-2">
-                        The Solution
+                        {t('projects_solution')}
                       </h4>
                       <p className="text-blue-900/90 dark:text-blue-200 text-sm leading-relaxed font-medium">
                         {project.solution}

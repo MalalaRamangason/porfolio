@@ -1,44 +1,46 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Code, Database, GitBranch, Server } from "lucide-react";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 const Skills = () => {
+  const { t } = useLanguage();
   const skillCategories = [
     {
-      title: "Frontend Technologies",
+      title: t('skills_frontend'),
       icon: <Code className="w-6 h-6" />,
       skills: [
-        { name: "TypeScript", level: "Intermediate" },
-        { name: "Tailwind CSS", level: "Intermediate" },
-        { name: "JavaScript", level: "Intermediate" },
-        { name: "React", level: "Intermediate" },
-        { name: "Angular", level: "Intermediate" }
+        { name: "TypeScript", level: t('skills_intermediate') },
+        { name: "Tailwind CSS", level: t('skills_intermediate') },
+        { name: "JavaScript", level: t('skills_intermediate') },
+        { name: "React", level: t('skills_intermediate') },
+        { name: "Angular", level: t('skills_intermediate') }
       ]
     },
     {
-      title: "Backend Technologies",
+      title: t('skills_backend'),
       icon: <Server className="w-6 h-6" />,
       skills: [
-        { name: "Java", level: "Intermediate" },
-        { name: "Spring Boot", level: "Intermediate" },
-        { name: "Python", level: "Intermediate" }
+        { name: "Java", level: t('skills_intermediate') },
+        { name: "Spring Boot", level: t('skills_intermediate') },
+        { name: "Python", level: t('skills_intermediate') }
       ]
     },
     {
-      title: "Database",
+      title: t('skills_database'),
       icon: <Database className="w-6 h-6" />,
       skills: [
-        { name: "PostgreSQL", level: "Intermediate" }
+        { name: "PostgreSQL", level: t('skills_intermediate') }
       ]
     },
     {
-      title: "DevOps & Tools",
+      title: t('skills_devops'),
       icon: <GitBranch className="w-6 h-6" />,
       skills: [
-        { name: "Git", level: "Intermediate" },
-        { name: "GitHub", level: "Intermediate" },
-        { name: "GitLab", level: "Intermediate" },
-        { name: "Docker", level: "Intermediate" }
+        { name: "Git", level: t('skills_intermediate') },
+        { name: "GitHub", level: t('skills_intermediate') },
+        { name: "GitLab", level: t('skills_intermediate') },
+        { name: "Docker", level: t('skills_intermediate') }
       ]
     }
   ];
@@ -62,10 +64,10 @@ const Skills = () => {
         <div className="text-center mb-16">
           <div className="flex items-center justify-center gap-2 mb-4">
             <Code className="w-8 h-8 text-ocean-primary dark:text-blue-400" />
-            <h2 className="text-4xl font-bold text-foreground dark:text-white">Technical Skills</h2>
+            <h2 className="text-4xl font-bold text-foreground dark:text-white">{t('skills_title')}</h2>
           </div>
           <p className="text-muted-foreground dark:text-gray-300 text-lg max-w-2xl mx-auto">
-            Technologies and tools I work with to build modern applications
+            {t('skills_subtitle')}
           </p>
         </div>
 
@@ -103,11 +105,9 @@ const Skills = () => {
         <div className="mt-16 max-w-4xl mx-auto">
           <Card className="bg-gradient-ocean text-white border-0">
             <CardContent className="p-8 text-center">
-              <h3 className="text-2xl font-bold mb-4">Full-Stack Development</h3>
+              <h3 className="text-2xl font-bold mb-4">{t('skills_overview_title')}</h3>
               <p className="text-ocean-light text-lg leading-relaxed">
-                Passionate about creating end-to-end solutions with modern technologies. 
-                From responsive frontend interfaces to robust backend systems and efficient databases, 
-                I bring ideas to life with clean, maintainable code.
+                {t('skills_overview_desc')}
               </p>
             </CardContent>
           </Card>

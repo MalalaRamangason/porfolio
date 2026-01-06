@@ -1,22 +1,12 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Award } from "lucide-react";
+import { useLanguage } from "@/contexts/LanguageContext";
+import { certificatesData } from "@/lib/data";
 
 const Certificates = () => {
-  const certificates = [
-    {
-      title: "Adobe After Effects",
-      organization: "Orange Digital Center Madagascar",
-      date: "March 2025",
-      type: "Course Completion"
-    },
-    {
-      title: "Figma for UX/UI Design",
-      organization: "Orange Digital Center Madagascar",
-      date: "February 2024",
-      type: "Course Completion"
-    },
-  ];
+  const { t, language } = useLanguage();
+  const certificates = certificatesData[language];
 
   return (
     <section id="certificates" className="py-20 bg-ocean-mist/20 dark:bg-gray-800">
@@ -24,10 +14,10 @@ const Certificates = () => {
         <div className="text-center mb-16">
           <div className="flex items-center justify-center gap-2 mb-4">
             <Award className="w-8 h-8 text-ocean-primary dark:text-blue-400" />
-            <h2 className="text-4xl font-bold text-foreground dark:text-white">Certificates & Trainings</h2>
+            <h2 className="text-4xl font-bold text-foreground dark:text-white">{t('cert_title')}</h2>
           </div>
           <p className="text-muted-foreground dark:text-gray-300 text-lg max-w-2xl mx-auto">
-            Continuous learning and professional development achievements
+            {t('cert_subtitle')}
           </p>
         </div>
 

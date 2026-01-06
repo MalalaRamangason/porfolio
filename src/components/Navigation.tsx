@@ -2,8 +2,11 @@ import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Menu, X } from "lucide-react";
 import ThemeToggle from "./ThemeToggle";
+import LanguageToggle from "./LanguageToggle";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 const Navigation = () => {
+  const { t } = useLanguage();
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
@@ -17,12 +20,12 @@ const Navigation = () => {
   }, []);
 
   const navItems = [
-    { name: 'Home', href: '#home' },
-    { name: 'Experience', href: '#experience' },
-    { name: 'Education', href: '#education' },
-    { name: 'Projects', href: '#projects' },
-    { name: 'Certificates', href: '#certificates' },
-    { name: 'Contact', href: '#contact' },
+    { name: t('nav_home'), href: '#home' },
+    { name: t('nav_experience'), href: '#experience' },
+    { name: t('nav_education'), href: '#education' },
+    { name: t('nav_projects'), href: '#projects' },
+    { name: t('nav_certificates'), href: '#certificates' },
+    { name: t('nav_contact'), href: '#contact' },
   ];
 
   const scrollToSection = (href: string) => {
@@ -70,11 +73,13 @@ const Navigation = () => {
                 </button>
               ))}
             </div>
+            <LanguageToggle />
             <ThemeToggle />
           </div>
 
           {/* Mobile menu button and theme toggle */}
           <div className="md:hidden flex items-center gap-3">
+            <LanguageToggle />
             <ThemeToggle />
             <Button
               variant="ghost"

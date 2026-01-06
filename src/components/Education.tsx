@@ -1,17 +1,21 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { GraduationCap } from "lucide-react";
+import { useLanguage } from "@/contexts/LanguageContext";
+import { educationData } from "@/lib/data";
 
 const Education = () => {
+  const { t, language } = useLanguage();
+  const edu = educationData[language];
   return (
     <section id="education" className="py-20 bg-ocean-mist/20 dark:bg-gray-800">
       <div className="container mx-auto px-6">
         <div className="text-center mb-16">
           <div className="flex items-center justify-center gap-2 mb-4">
             <GraduationCap className="w-8 h-8 text-ocean-primary dark:text-blue-400" />
-            <h2 className="text-4xl font-bold text-foreground dark:text-white">Education</h2>
+            <h2 className="text-4xl font-bold text-foreground dark:text-white">{t('edu_title')}</h2>
           </div>
           <p className="text-muted-foreground dark:text-gray-300 text-lg max-w-2xl mx-auto">
-            Academic foundation that shaped my development journey
+            {t('edu_subtitle')}
           </p>
         </div>
 
@@ -28,19 +32,18 @@ const Education = () => {
                     <CardHeader>
                       <div className="flex items-center justify-end gap-2 mb-2">
                         <span className="bg-ocean-primary dark:bg-blue-500 text-white px-3 py-1 rounded-full text-sm font-medium">
-                          In Progress
+                          {edu.m1.badge}
                         </span>
                       </div>
-                      <CardTitle className="text-xl text-ocean-deep dark:text-white">M1 - Master's Degree Year 1</CardTitle>
+                      <CardTitle className="text-xl text-ocean-deep dark:text-white">{edu.m1.title}</CardTitle>
                       <p className="text-ocean-primary dark:text-blue-400 font-semibold">
-                        ISPM
+                        {edu.m1.institution}
                       </p>
                     </CardHeader>
                     <CardContent>
-                      <p className="text-muted-foreground dark:text-gray-400 font-medium mb-2">August 2025 - Present</p>
+                      <p className="text-muted-foreground dark:text-gray-400 font-medium mb-2">{edu.m1.duration}</p>
                       <p className="text-muted-foreground dark:text-gray-300 leading-relaxed text-sm">
-                        Pursuing Master's studies to deepen expertise in computer science 
-                        and telecommunications with advanced specialization.
+                        {edu.m1.description}
                       </p>
                     </CardContent>
                   </Card>
@@ -64,21 +67,19 @@ const Education = () => {
                     <CardHeader>
                       <div className="flex items-center gap-2 mb-2">
                         <span className="bg-ocean-light text-ocean-deep px-3 py-1 rounded-full text-sm font-medium">
-                          Graduate
+                          {edu.licence.badge}
                         </span>
                       </div>
-                      <CardTitle className="text-xl text-ocean-deep">Bachelor's Degree in Computer Science and Telecommunications</CardTitle>
+                      <CardTitle className="text-xl text-ocean-deep">{edu.licence.title}</CardTitle>
                       <p className="text-ocean-primary font-semibold">
-                        Specialization: Information Management, Software Engineering and Artificial Intelligence
+                        {edu.licence.specialization}
                       </p>
-                      <p className="text-ocean-wave font-medium">ISPM</p>
+                      <p className="text-ocean-wave font-medium">{edu.licence.institution}</p>
                     </CardHeader>
                     <CardContent>
-                      <p className="text-muted-foreground font-medium mb-2">December 2021 - August 2025</p>
+                      <p className="text-muted-foreground font-medium mb-2">{edu.licence.duration}</p>
                       <p className="text-muted-foreground leading-relaxed text-sm">
-                        Comprehensive training in computer science and telecommunications with specialization 
-                        in information management, software engineering and artificial intelligence. 
-                        Developed solid expertise in programming and modern technologies.
+                        {edu.licence.description}
                       </p>
                     </CardContent>
                   </Card>

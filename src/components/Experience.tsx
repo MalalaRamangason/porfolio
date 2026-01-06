@@ -1,39 +1,12 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Briefcase } from "lucide-react";
+import { useLanguage } from "@/contexts/LanguageContext";
+import { experiencesData } from "@/lib/data";
 
 const Experience = () => {
-  const experiences = [
-    {
-      company: "Vanilla Pay International – Fintech (Madagascar)",
-      position: "Backend Developer / ERP Intern",
-      duration: "October 2025 - December 2025",
-      achievements: [
-        "Participated in the implementation and stabilization of Frappe / ERPNext with Docker",
-        "Customized ERP system for legal data requirements and compliance",
-        "Utilized Python scripts for automation and data processing",
-        "Developed a FX microservice for exchange rate management in a fintech environment"
-      ]
-    },
-    {
-      company: "Ministry of Economy and Finance Madagascar",
-      position: "Software Developer Intern",
-      duration: "April 2025 - July 2025",
-      achievements: [
-        "Create frontend components for the private platform of the Ministry of Economy and Finance Madagascar",
-        "Integrated RESTful APIs to enhance data retrieval and user interaction on the platform",
-        "Integration API Models AI to generate code."
-      ]
-    },
-    {
-      company: "42 School Madagascar",
-      position: "Piscine Discovery Python Participant",
-      duration: "March 2025",
-      achievements: [
-        "Completed a discovery 1-week intensive coding bootcamp focused on Python programming",
-      ]
-    },
-  ];
+  const { t, language } = useLanguage();
+  const experiences = experiencesData[language];
 
   return (
     <section id="experience" className="py-20 bg-background dark:bg-gray-900">
@@ -41,10 +14,10 @@ const Experience = () => {
         <div className="text-center mb-16">
           <div className="flex items-center justify-center gap-2 mb-4">
             <Briefcase className="w-8 h-8 text-ocean-primary dark:text-blue-400" />
-            <h2 className="text-4xl font-bold text-foreground dark:text-white">Experience</h2>
+            <h2 className="text-4xl font-bold text-foreground dark:text-white">{t('exp_title')}</h2>
           </div>
           <p className="text-muted-foreground dark:text-gray-300 text-lg max-w-2xl mx-auto">
-            My professional journey building amazing web experiences
+            {t('exp_subtitle')}
           </p>
         </div>
 
