@@ -12,7 +12,7 @@ const Hero = () => {
 
   return (
     <>
-      <section className="min-h-screen flex items-center relative overflow-hidden bg-gradient-to-br from-[#0066cc] via-[#0080ff] to-[#0099ff] dark:from-gray-900 dark:via-blue-900 dark:to-gray-800">
+      <section className="min-h-screen flex items-center relative overflow-hidden bg-gradient-to-br from-[#0066cc] via-[#0080ff] to-[#0099ff] dark:from-gray-900 dark:via-blue-900 dark:to-gray-800 pt-16 md:pt-0">
       {/* Particles/Stars Background */}
       <div className="absolute inset-0 overflow-hidden">
         {[...Array(50)].map((_, i) => (
@@ -34,14 +34,14 @@ const Hero = () => {
       <div className="absolute bottom-40 left-40 w-96 h-96 bg-cyan-300/10 rounded-full blur-3xl"></div>
 
       {/* Main Content */}
-      <div className="container mx-auto px-6 lg:px-12 relative z-10">
-        <div className="flex flex-col lg:flex-row items-center gap-12 lg:gap-20 max-w-7xl mx-auto">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-12 relative z-10">
+        <div className="flex flex-col lg:flex-row items-center gap-8 sm:gap-12 lg:gap-20 max-w-7xl mx-auto">
           
           {/* Left - Profile Picture */}
           <div className="flex-shrink-0">
             <div className="relative">
               {/* Cyan circle border */}
-              <div className="w-72 h-72 lg:w-80 lg:h-80 rounded-full bg-gradient-to-br from-cyan-400 to-blue-400 p-1.5 shadow-2xl shadow-cyan-500/50">
+              <div className="w-56 h-56 sm:w-64 sm:h-64 md:w-72 md:h-72 lg:w-80 lg:h-80 rounded-full bg-gradient-to-br from-cyan-400 to-blue-400 p-1.5 shadow-2xl shadow-cyan-500/50">
                 <div className="w-full h-full rounded-full bg-white p-2">
                   {/* Replace with your actual photo */}
                   <div className="w-full h-full rounded-full bg-gradient-to-br from-gray-200 to-gray-300 flex items-center justify-center text-gray-500 text-6xl font-bold overflow-hidden">
@@ -63,19 +63,19 @@ const Hero = () => {
           </div>
 
           {/* Right - Content */}
-          <div className="flex-1 text-white space-y-6">
+          <div className="flex-1 text-white space-y-4 sm:space-y-6">
             {/* Greeting */}
-            <p className="text-xl lg:text-2xl font-light text-blue-100">
+            <p className="text-lg sm:text-xl lg:text-2xl font-light text-blue-100">
               Hi I'm
             </p>
 
             {/* Name */}
-            <h1 className="text-5xl lg:text-6xl xl:text-7xl font-bold leading-tight">
+            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold leading-tight">
               Malala Ramangason
             </h1>
 
             {/* Title with emoji */}
-            <h2 className="text-2xl lg:text-3xl font-semibold text-blue-50">
+            <h2 className="text-xl sm:text-2xl lg:text-3xl font-semibold text-blue-50">
               Fullstack Developer & Problem Solver 👋
             </h2>
 
