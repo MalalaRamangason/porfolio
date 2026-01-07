@@ -70,11 +70,11 @@ const Education = () => {
                           {edu.licence.badge}
                         </span>
                       </div>
-                      <CardTitle className="text-xl text-ocean-deep">{edu.licence.title}</CardTitle>
-                      <p className="text-ocean-primary font-semibold">
+                      <CardTitle className="text-xl text-ocean-deep dark:text-white">{edu.licence.title}</CardTitle>
+                      <p className="text-ocean-primary dark:text-blue-400 font-semibold">
                         {edu.licence.specialization}
                       </p>
-                      <p className="text-ocean-wave font-medium">{edu.licence.institution}</p>
+                      <p className="text-ocean-wave dark:text-blue-300 font-medium">{edu.licence.institution}</p>
                     </CardHeader>
                     <CardContent>
                       <p className="text-muted-foreground font-medium mb-2">{edu.licence.duration}</p>

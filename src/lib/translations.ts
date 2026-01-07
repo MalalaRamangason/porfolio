@@ -91,10 +91,10 @@ export const translations = {
     nav_contact: 'Contact',
     
     // Hero Section
-    hero_greeting: 'Salut, je suis',
+    hero_greeting: 'Bonjour, je suis',
     hero_title: 'Développeuse Fullstack & Problem Solver 👋',
     hero_subtitle: 'Développeuse Frontend passionnée par les expériences pixel perfect.',
-    hero_description: 'Je crée de magnifiques applications web responsives avec des technologies modernes. Avec un œil attentif pour le design et des expériences pensées que les utilisateurs adorent.',
+    hero_description: 'Je crée des magnifiques applications web responsives avec des technologies modernes. Avec un œil attentif pour le design et des expériences pensées que les utilisateurs adorent.',
     hero_view_projects: 'Voir les Projets',
     hero_download_cv: 'Télécharger le CV',
     
@@ -138,7 +138,7 @@ export const translations = {
     skills_advanced: 'Avancé',
     skills_beginner: 'Débutant',
     skills_overview_title: 'Développement Full-Stack',
-    skills_overview_desc: 'Passionné par la création de solutions complètes avec des technologies modernes. Des interfaces frontend responsives aux systèmes backend robustes et bases de données efficaces, je donne vie aux idées avec un code propre et maintenable.',
+    skills_overview_desc: 'Passionnée par la création de solutions complètes avec des technologies modernes. Des interfaces frontend responsives aux systèmes backend robustes et bases de données efficaces, je donne vie aux idées avec un code propre et maintenable.',
     
     // Certificates
     cert_title: 'Certificats & Réalisations',

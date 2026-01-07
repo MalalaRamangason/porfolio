@@ -104,47 +104,59 @@ export const projectsData = {
   en: [
     {
       title: "Appistery",
-      problem: "Finding quality apps across multiple stores is time-consuming and overwhelming for users.",
-      solution: "A curated discovery platform that aggregates the best applications with intelligent filtering and personalized recommendations.",
+      problem: "Authentic Malagasy stories and the cultural and mystical narratives of Madagascar are underrepresented on modern digital platforms that offer immersive experiences, structured content, and mobile-first accessibility.",
+      solution: "Development of a narrative streaming platform dedicated to authentic Malagasy stories, integrating cultural and mystical narratives from Madagascar, structured into series, episodes, and chapters, with a modular architecture and a mobile-first immersive reading experience.",
       categories: ["Culture", "Productivity"],
-      url: "https://appistery-inc.vercel.app/"
+      url: "https://mistery.pro/appistery",
+      imageLight: "/projects/appistery-light.png",
+      imageDark: "/projects/appistery-dark.png"
     },
     {
       title: "Tiny",
-      problem: "Long URLs are difficult to share and track across different platforms and marketing campaigns.",
-      solution: "A modern URL shortener with analytics dashboard, custom aliases, and QR code generation for seamless link management.",
+      problem: "Many project management tools are overly complex, require long onboarding, and fail to provide real-time collaboration, analytics, and secure team workflows within a single, intuitive platform.",
+      solution: "Development of a real-time project management platform designed for immediate use, integrating Kanban boards, time tracking, analytics, secure collaboration, and instant communication within a scalable, enterprise-ready architecture.",
       categories: ["Productivity", "Tools"],
-      url: "https://tinyly.app/"
+      url: "https://tinyly.app/",
+      imageLight: "/projects/tiny-light.png",
+      imageDark: "/projects/tiny-dark.png"
     },
     {
       title: "Ro",
-      problem: "The daily challenge for households to vary meals, choose today's dish, and organize groceries stress-free.",
-      solution: "A home culinary assistant that simplifies automatic meal planning and grocery lists, to eat local with love.",
+      problem: "Households face a recurring daily challenge in deciding what to cook, varying meals, and organizing grocery planning efficiently, often resulting in stress, repetition, and wasted time.",
+      solution: "Development of a home culinary assistant that automates meal planning and grocery list generation, enabling stress-free cooking while encouraging local and thoughtful food consumption.",
       categories: ["FoodTech", "Lifestyle"],
-      url: "https://www.laoka.me/"
+      url: "https://www.laoka.me/",
+      imageLight: "/projects/ro-light.png",
+      imageDark: "/projects/ro-dark.png"
     }
   ],
   fr: [
     {
       title: "Appistery",
-      problem: "Trouver des applications de qualité à travers plusieurs magasins est chronophage et accablant pour les utilisateurs.",
-      solution: "Une plateforme de découverte organisée qui regroupe les meilleures applications avec filtrage intelligent et recommandations personnalisées.",
+      problem: "Manque de plateformes numériques capables de valoriser les récits malagasy authentiques (culturels, sociaux et mystiques) à travers une expérience immersive, structurée et accessible sur mobile, tout en respectant la narration locale et la richesse des mystères propres à Madagascar.",
+      solution: "Développement d’une plateforme de streaming narratif dédiée aux histoires vraies malagasy, intégrant des récits culturels et mystiques de Madagascar, structurés en séries, épisodes et chapitres, avec une architecture modulaire et une expérience mobile-first immersive.",
       categories: ["Culture", "Productivité"],
-      url: "https://appistery-inc.vercel.app/"
+      url: "https://mistery.pro/appistery",
+      imageLight: "/projects/appistery-light.png",
+      imageDark: "/projects/appistery-dark.png"
     },
     {
       title: "Tiny",
-      problem: "Les URL longues sont difficiles à partager et à suivre sur différentes plateformes et campagnes marketing.",
-      solution: "Un raccourcisseur d'URL moderne avec tableau de bord analytique, alias personnalisés et génération de codes QR pour une gestion fluide des liens.",
+      problem: "De nombreux outils de gestion de projet sont complexes, nécessitent une longue phase d’apprentissage et proposent des fonctionnalités fragmentées, ce qui freine la collaboration en temps réel et la productivité des équipes.",
+      solution: "Développement d’une plateforme de gestion de projet en temps réel, pensée pour une prise en main immédiate, intégrant tableaux Kanban, suivi du temps, analytics, collaboration sécurisée et communication instantanée dans une architecture scalable et prête pour l’entreprise.",
       categories: ["Productivité", "Outils"],
-      url: "https://tinyly.app/"
+      url: "https://tinyly.app/",
+      imageLight: "/projects/tiny-light.png",
+      imageDark: "/projects/tiny-dark.png"
     },
     {
       title: "Ro",
-      problem: "Le défi quotidien des foyers pour varier les repas, choisir le plat du jour et organiser les courses sans stress.",
-      solution: "Un assistant culinaire domestique qui simplifie la planification automatique des repas et les listes de courses, pour manger local avec amour.",
-      categories: ["FoodTech", "Style de vie"],
-      url: "https://www.laoka.me/"
+      problem: "Les foyers font face à un défi quotidien récurrent pour décider quoi cuisiner, varier les repas et organiser efficacement la planification des courses, ce qui entraîne souvent du stress, de la répétition et une perte de temps.",
+      solution: "Développement d’un assistant culinaire domestique qui automatise la planification des repas et la génération de listes de courses, permettant une cuisine sans stress tout en favorisant une consommation alimentaire locale et réfléchie.",
+      categories: ["FoodTech", "Lifestyle"],
+      url: "https://www.laoka.me/",
+      imageLight: "/projects/ro-light.png",
+      imageDark: "/projects/ro-dark.png"
     }
   ]
 };
