@@ -133,10 +133,15 @@ const CVGameModal = ({ isOpen, onClose }: CVGameModalProps) => {
     
     // Éviter les doubles clics (touch + click)
     const now = Date.now();
-    if (now - lastInteractionRef.current < 300) {
-      return; // Ignorer si moins de 300ms depuis la dernière interaction
+    if (now - lastInteractionRef.current < 200) {
+      return; // Ignorer si moins de 200ms depuis la dernière interaction
     }
     lastInteractionRef.current = now;
+    
+    // Haptic feedback for mobile
+    if ('vibrate' in navigator) {
+      navigator.vibrate(50);
+    }
     
     catchStar(starId);
   };
@@ -144,9 +149,11 @@ const CVGameModal = ({ isOpen, onClose }: CVGameModalProps) => {
   const downloadCV = () => {
     const cvFile = language === 'en' ? 'CV-EN-Malala-Ramangason.pdf' : 'CV-FR-Malala-Ramangason.pdf';
     const link = document.createElement('a');
-    link.href = `/public/${cvFile}`;
+    link.href = `/${cvFile}`;
     link.download = cvFile;
+    document.body.appendChild(link);
     link.click();
+    document.body.removeChild(link);
   };
 
   const skipGame = () => {
@@ -157,7 +164,7 @@ const CVGameModal = ({ isOpen, onClose }: CVGameModalProps) => {
   if (!isOpen) return null;
 
   return (
-    <div className="fixed inset-0 z-[100] flex items-center justify-center">
+    <div className="fixed inset-0 z-[100] flex items-center justify-center overflow-hidden">
       {/* Background adapté au thème */}
       <div 
         className={`absolute inset-0 ${
