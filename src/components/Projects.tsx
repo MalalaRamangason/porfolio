@@ -1,11 +1,21 @@
 import { Badge } from "@/components/ui/badge";
-import { ExternalLink, Folder, AppWindow, Link2, UtensilsCrossed } from "lucide-react";
+import { ExternalLink, Folder, AppWindow, Link2, UtensilsCrossed, X } from "lucide-react";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { projectsData } from "@/lib/data";
+import { useState } from "react";
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogHeader,
+  DialogTitle,
+} from "@/components/ui/dialog";
 
 const Projects = () => {
   const { t, language } = useLanguage();
   const projects = projectsData[language] || [];
+  const [selectedProject, setSelectedProject] = useState<any>(null);
+  const [isOpen, setIsOpen] = useState(false);
   
   console.log('Language:', language);
   console.log('Number of projects:', projects.length);
@@ -15,6 +25,11 @@ const Projects = () => {
     'Appistery': AppWindow,
     'Tiny': Link2,
     'Ro': UtensilsCrossed
+  };
+
+  const handleProjectClick = (project: any) => {
+    setSelectedProject(project);
+    setIsOpen(true);
   };
 
   return (
@@ -34,7 +49,8 @@ const Projects = () => {
           {projects.map((project, index) => (
             <div
               key={index}
-              className="group relative block h-full"
+              onClick={() => handleProjectClick(project)}
+              className="group relative block h-full cursor-pointer"
             >
               {/* Glassmorphism Card */}
               <div className="relative h-full bg-white dark:bg-gray-800 rounded-2xl border border-gray-200 dark:border-gray-700 shadow-lg hover:shadow-2xl transition-all duration-500 hover:scale-[1.02] hover:-translate-y-1 overflow-hidden flex flex-col">
@@ -61,6 +77,7 @@ const Projects = () => {
                     href={project.url}
                     target="_blank"
                     rel="noopener noreferrer"
+                    onClick={(e) => e.stopPropagation()}
                     className="absolute top-4 right-4 z-10"
                   >
                     <div className="w-10 h-10 flex items-center justify-center rounded-full bg-white/90 dark:bg-gray-800/90 backdrop-blur-sm text-blue-600 dark:text-blue-400 hover:bg-blue-600 dark:hover:bg-blue-500 hover:text-white transition-all duration-300 hover:scale-110 hover:rotate-12 shadow-lg">
@@ -131,6 +148,108 @@ const Projects = () => {
             </div>
           ))}
         </div>
+
+        {/* Modal pour afficher les détails du projet */}
+        <Dialog open={isOpen} onOpenChange={setIsOpen}>
+          <DialogContent className="max-w-4xl max-h-[90vh] overflow-hidden p-0 bg-white dark:bg-gray-900 border-none shadow-2xl">
+            {selectedProject && (
+              <div className="relative overflow-hidden">
+                
+                {/* Image Hero - Plus sobre */}
+                <div className="relative h-72 overflow-hidden">
+                  <img 
+                    src={selectedProject.imageLight} 
+                    alt={selectedProject.title}
+                    className="w-full h-full object-cover object-top dark:hidden"
+                  />
+                  <img 
+                    src={selectedProject.imageDark} 
+                    alt={selectedProject.title}
+                    className="w-full h-full object-cover object-top hidden dark:block"
+                  />
+                  
+                  {/* Overlay simple et élégant */}
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent"></div>
+                  
+                  {/* Header minimaliste */}
+                  <div className="absolute bottom-0 left-0 right-0 p-8">
+                    <div className="flex items-start justify-between">
+                      <div className="flex items-center gap-4">
+                        <div className="w-14 h-14 flex items-center justify-center rounded-xl bg-white/10 backdrop-blur-xl border border-white/20 text-white">
+                          {(() => {
+                            const IconComponent = iconMap[selectedProject.title];
+                            return IconComponent ? <IconComponent className="w-7 h-7" /> : null;
+                          })()}
+                        </div>
+                        <div>
+                          <h2 className="text-3xl font-bold text-white mb-2">
+                            {selectedProject.title}
+                          </h2>
+                          <div className="flex gap-2">
+                            {selectedProject.categories?.map((category: string, i: number) => (
+                              <span 
+                                key={i}
+                                className="px-3 py-1 text-xs font-medium text-white/90 bg-white/10 backdrop-blur-sm rounded-full border border-white/20"
+                              >
+                                {category}
+                              </span>
+                            ))}
+                          </div>
+                        </div>
+                      </div>
+                      
+                      {/* Bouton visiter en haut à droite */}
+                      <a
+                        href={selectedProject.url}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="flex items-center gap-2 px-5 py-2.5 bg-white/10 hover:bg-white/20 backdrop-blur-xl border border-white/20 text-white text-sm font-medium rounded-lg transition-all duration-200"
+                      >
+                        <ExternalLink className="w-4 h-4" />
+                        {t('projects_view')}
+                      </a>
+                    </div>
+                  </div>
+
+                  {/* Bouton fermer minimaliste */}
+                  <button
+                    onClick={() => setIsOpen(false)}
+                    className="absolute top-6 right-6 w-9 h-9 flex items-center justify-center rounded-full bg-white/10 hover:bg-white/20 backdrop-blur-xl border border-white/20 text-white transition-all duration-200"
+                  >
+                    <X className="w-5 h-5" />
+                  </button>
+                </div>
+
+                {/* Contenu épuré */}
+                <div className="p-8 space-y-8 max-h-[calc(90vh-288px)] overflow-y-auto">
+                  
+                  {/* Le Problème */}
+                  <div>
+                    <h3 className="text-sm font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-wide mb-3">
+                      {t('projects_problem')}
+                    </h3>
+                    <p className="text-base text-gray-700 dark:text-gray-300 leading-relaxed">
+                      {selectedProject.problem}
+                    </p>
+                  </div>
+
+                  {/* Séparateur subtil */}
+                  <div className="h-px bg-gradient-to-r from-transparent via-gray-200 dark:via-gray-700 to-transparent"></div>
+
+                  {/* La Solution */}
+                  <div>
+                    <h3 className="text-sm font-semibold text-blue-600 dark:text-blue-400 uppercase tracking-wide mb-3">
+                      {t('projects_solution')}
+                    </h3>
+                    <p className="text-base text-gray-700 dark:text-gray-300 leading-relaxed">
+                      {selectedProject.solution}
+                    </p>
+                  </div>
+                </div>
+              </div>
+            )}
+          </DialogContent>
+        </Dialog>
       </div>
     </section>
   );
