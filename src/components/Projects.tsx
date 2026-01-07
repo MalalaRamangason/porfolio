@@ -171,7 +171,7 @@ const Projects = () => {
                   {/* Overlay simple et élégant */}
                   <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent"></div>
                   
-                  {/* Header minimaliste */}
+                  {/* Header minimaliste - masquer catégories et bouton sur mobile */}
                   <div className="absolute bottom-0 left-0 right-0 p-8">
                     <div className="flex items-start justify-between">
                       <div className="flex items-center gap-4">
@@ -185,7 +185,8 @@ const Projects = () => {
                           <h2 className="text-3xl font-bold text-white mb-2">
                             {selectedProject.title}
                           </h2>
-                          <div className="flex gap-2">
+                          {/* Catégories masquées sur mobile */}
+                          <div className="hidden md:flex gap-2">
                             {selectedProject.categories?.map((category: string, i: number) => (
                               <span 
                                 key={i}
@@ -198,12 +199,12 @@ const Projects = () => {
                         </div>
                       </div>
                       
-                      {/* Bouton visiter en haut à droite */}
+                      {/* Bouton visiter masqué sur mobile */}
                       <a
                         href={selectedProject.url}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="flex items-center gap-2 px-5 py-2.5 bg-white/10 hover:bg-white/20 backdrop-blur-xl border border-white/20 text-white text-sm font-medium rounded-lg transition-all duration-200"
+                        className="hidden md:flex items-center gap-2 px-5 py-2.5 bg-white/10 hover:bg-white/20 backdrop-blur-xl border border-white/20 text-white text-sm font-medium rounded-lg transition-all duration-200"
                       >
                         <ExternalLink className="w-4 h-4" />
                         {t('projects_view')}
@@ -244,6 +245,37 @@ const Projects = () => {
                     <p className="text-base text-gray-700 dark:text-gray-300 leading-relaxed">
                       {selectedProject.solution}
                     </p>
+                  </div>
+
+                  {/* Catégories et bouton en bas sur mobile */}
+                  <div className="md:hidden space-y-4 pt-4 border-t border-gray-200 dark:border-gray-700">
+                    {/* Catégories */}
+                    <div>
+                      <h4 className="text-xs font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-wide mb-2">
+                        {t('projects_categories')}
+                      </h4>
+                      <div className="flex flex-wrap gap-2">
+                        {selectedProject.categories?.map((category: string, i: number) => (
+                          <span 
+                            key={i}
+                            className="px-3 py-1.5 text-xs font-medium text-blue-700 dark:text-blue-300 bg-blue-50 dark:bg-blue-900/30 rounded-full border border-blue-200 dark:border-blue-700"
+                          >
+                            {category}
+                          </span>
+                        ))}
+                      </div>
+                    </div>
+                    
+                    {/* Bouton visiter */}
+                    <a
+                      href={selectedProject.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex items-center justify-center gap-2 w-full px-5 py-3 bg-blue-600 hover:bg-blue-700 text-white text-sm font-medium rounded-lg transition-all duration-200 shadow-lg"
+                    >
+                      <ExternalLink className="w-4 h-4" />
+                      {t('projects_view')}
+                    </a>
                   </div>
                 </div>
               </div>

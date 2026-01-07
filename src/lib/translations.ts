@@ -47,6 +47,7 @@ export const translations = {
     projects_solution: 'The Solution',
     projects_view: 'View Project',
     projects_code: 'View Code',
+    projects_categories: 'Categories',
     
     // Skills
     skills_title: 'Skills & Technologies',
@@ -132,6 +133,7 @@ export const translations = {
     projects_solution: 'La Solution',
     projects_view: 'Voir le Projet',
     projects_code: 'Voir le Code',
+    projects_categories: 'Catégories',
     
     // Skills
     skills_title: 'Compétences & Technologies',
