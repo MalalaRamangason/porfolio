@@ -10,20 +10,23 @@ export const translations = {
     
     // Hero Section
     hero_greeting: "Hi I'm",
-    hero_title: 'Fullstack Developer & Problem Solver 👋',
-    hero_subtitle: 'Frontend Developer about perfect pixel experiences.',
-    hero_description: 'Craft beautiful responsive web applications using modern technologies. With keen eye for design for thoughtful experiences that users love.',
+    hero_title: 'Fullstack Developer & Creative Problem Solver 👋',
+    hero_subtitle: 'I turn ideas into reality through elegant digital experiences.',
+    hero_description: 'Passionate about building solutions that make a difference. I bring creativity, attention to detail, and a problem-solving mindset to every project—crafting experiences that people actually enjoy using.',
     hero_view_projects: 'View Projects',
     hero_download_cv: 'Download CV',
     
     // CV Game Modal
-    game_title: 'A Magical Starry Night! ✨',
+    game_title_night: 'A Magical Starry Night! ✨',
+    game_title_day: 'A Beautiful Sky! ☁️',
     game_instruction: 'Catch',
     game_stars: 'stars',
+    game_clouds: 'clouds',
     game_unlock: 'to unlock my CV',
     game_progress: 'Progress:',
     game_skip: 'Skip game →',
-    game_success: 'Magnificent! 🌟',
+    game_success_night: 'Magnificent! 🌟',
+    game_success_day: 'Amazing! ☁️',
     game_downloading: 'Downloading...',
     
     // Experience
@@ -92,20 +95,23 @@ export const translations = {
     
     // Hero Section
     hero_greeting: 'Bonjour, je suis',
-    hero_title: 'Développeuse Fullstack & Problem Solver 👋',
-    hero_subtitle: 'Développeuse Frontend passionnée par les expériences pixel perfect.',
-    hero_description: 'Je crée des magnifiques applications web responsives avec des technologies modernes. Avec un œil attentif pour le design et des expériences pensées que les utilisateurs adorent.',
+    hero_title: 'Développeuse Fullstack & Problem Solver Créative 👋',
+    hero_subtitle: 'Je transforme les idées en réalité à travers des expériences digitales élégantes.',
+    hero_description: 'Passionnée par la création de solutions qui font la différence. J\'apporte créativité, souci du détail et un esprit problem-solving à chaque projet—concevant des expériences que les gens aiment vraiment utiliser.',
     hero_view_projects: 'Voir les Projets',
     hero_download_cv: 'Télécharger le CV',
     
     // CV Game Modal
-    game_title: 'Une Nuit Étoilée Magique ! ✨',
+    game_title_night: 'Une Nuit Étoilée Magique ! ✨',
+    game_title_day: 'Un Beau Ciel ! ☁️',
     game_instruction: 'Attrapez',
     game_stars: 'étoiles',
+    game_clouds: 'nuages',
     game_unlock: 'pour débloquer mon CV',
     game_progress: 'Progression :',
     game_skip: 'Passer le jeu →',
-    game_success: 'Magnifique ! 🌟',
+    game_success_night: 'Magnifique ! 🌟',
+    game_success_day: 'Incroyable ! ☁️',
     game_downloading: 'Téléchargement...',
     
     // Experience

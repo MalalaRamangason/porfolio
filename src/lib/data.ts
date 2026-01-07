@@ -33,13 +33,13 @@ export const experiencesData = {
   fr: [
     {
       company: "Vanilla Pay International – Fintech (Madagascar)",
-      position: "Développeur Backend / Stagiaire ERP",
+      position: "Développeuse Backend / Stagiaire ERP",
       duration: "Octobre 2025 - Décembre 2025",
       achievements: [
-        "Participé à l'implémentation et la stabilisation de Frappe / ERPNext avec Docker",
-        "Personnalisé le système ERP pour les exigences de données légales et la conformité",
-        "Utilisé des scripts Python pour l'automatisation et le traitement des données",
-        "Développé un microservice FX pour la gestion des taux de change dans un environnement fintech"
+        "Participation à l'implémentation et la stabilisation de Frappe / ERPNext avec Docker",
+        "Personnalisation du système ERP pour les exigences de données légales et la conformité",
+        "Utilisation de scripts Python pour l'automatisation et le traitement des données",
+        "Développement d'un microservice FX pour la gestion des taux de change dans un environnement fintech"
       ]
     },
     {
@@ -47,8 +47,8 @@ export const experiencesData = {
       position: "Stagiaire Développeur Logiciel",
       duration: "Avril 2025 - Juillet 2025",
       achievements: [
-        "Créé des composants frontend pour la plateforme privée du Ministère de l'Économie et des Finances Madagascar",
-        "Intégré des API RESTful pour améliorer la récupération de données et l'interaction utilisateur sur la plateforme",
+        "Création de composants frontend pour la plateforme privée du Ministère de l'Économie et des Finances Madagascar",
+        "Intégration d'API RESTful pour améliorer la récupération de données et l'interaction utilisateur sur la plateforme",
         "Intégration d'API Models IA pour générer du code."
       ]
     },
@@ -57,7 +57,7 @@ export const experiencesData = {
       position: "Participant Piscine Discovery Python",
       duration: "Mars 2025",
       achievements: [
-        "Complété un bootcamp intensif d'une semaine axé sur la programmation Python",
+        "Complétée un bootcamp intensif d'une semaine axé sur la programmation Python",
       ]
     },
   ]
@@ -92,7 +92,7 @@ export const educationData = {
     licence: {
       badge: "Diplômé",
       title: "Licence en Informatique et Télécommunications",
-      specialization: "Spécialisation : Gestion de l'Information, Génie Logiciel et Intelligence Artificielle",
+      specialization: "Spécialisation : Informatique de Gestion, Génie Logiciel et Intelligence Artificielle",
       institution: "ISPM",
       duration: "Décembre 2021 - Août 2025",
       description: "Formation complète en informatique et télécommunications avec spécialisation en gestion de l'information, génie logiciel et intelligence artificielle. Développé une solide expertise en programmation et technologies modernes."

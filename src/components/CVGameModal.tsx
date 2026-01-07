@@ -1,5 +1,5 @@
 import { useEffect, useState, useRef } from "react";
-import { X, Star, Sparkles } from "lucide-react";
+import { X, Star, Sparkles, Cloud } from "lucide-react";
 import { useLanguage } from "@/contexts/LanguageContext";
 
 interface Star {
@@ -22,9 +22,34 @@ const CVGameModal = ({ isOpen, onClose }: CVGameModalProps) => {
   const [caughtCount, setCaughtCount] = useState(0);
   const [isComplete, setIsComplete] = useState(false);
   const [showConfetti, setShowConfetti] = useState(false);
+  const [isDarkMode, setIsDarkMode] = useState(() => document.documentElement.classList.contains('dark'));
   const gameRef = useRef<HTMLDivElement>(null);
   const animationRef = useRef<number>();
   const lastInteractionRef = useRef<number>(0);
+
+  // Detect dark mode
+  useEffect(() => {
+    const checkDarkMode = () => {
+      const isDark = document.documentElement.classList.contains('dark');
+      console.log('Dark mode detected:', isDark); // Debug log
+      setIsDarkMode(isDark);
+    };
+    
+    // Check immediately
+    checkDarkMode();
+    
+    // Observer pour détecter les changements de thème
+    const observer = new MutationObserver(() => {
+      checkDarkMode();
+    });
+    
+    observer.observe(document.documentElement, {
+      attributes: true,
+      attributeFilter: ['class']
+    });
+    
+    return () => observer.disconnect();
+  }, []);
 
   useEffect(() => {
     if (!isOpen) {
@@ -133,23 +158,33 @@ const CVGameModal = ({ isOpen, onClose }: CVGameModalProps) => {
 
   return (
     <div className="fixed inset-0 z-[100] flex items-center justify-center">
-      {/* Van Gogh inspired starry night backdrop */}
+      {/* Background adapté au thème */}
       <div 
-        className="absolute inset-0 bg-gradient-to-b from-blue-950 via-indigo-950 to-blue-900"
+        className={`absolute inset-0 ${
+          isDarkMode 
+            ? 'bg-gradient-to-b from-blue-950 via-indigo-950 to-blue-900'
+            : 'bg-gradient-to-b from-sky-300 via-blue-200 to-blue-100'
+        }`}
         onClick={onClose}
       >
-        {/* Swirling background effect - Van Gogh style */}
+        {/* Swirling background effect */}
         <div className="absolute inset-0 opacity-40">
           {[...Array(30)].map((_, i) => (
             <div
               key={i}
               className="absolute rounded-full blur-3xl animate-pulse"
               style={{
-                background: i % 3 === 0 
-                  ? 'radial-gradient(circle, rgba(234, 179, 8, 0.3) 0%, transparent 70%)'
-                  : i % 3 === 1
-                  ? 'radial-gradient(circle, rgba(251, 191, 36, 0.25) 0%, transparent 70%)'
-                  : 'radial-gradient(circle, rgba(59, 130, 246, 0.2) 0%, transparent 70%)',
+                background: isDarkMode
+                  ? (i % 3 === 0 
+                      ? 'radial-gradient(circle, rgba(234, 179, 8, 0.3) 0%, transparent 70%)'
+                      : i % 3 === 1
+                      ? 'radial-gradient(circle, rgba(251, 191, 36, 0.25) 0%, transparent 70%)'
+                      : 'radial-gradient(circle, rgba(59, 130, 246, 0.2) 0%, transparent 70%)')
+                  : (i % 3 === 0
+                      ? 'radial-gradient(circle, rgba(255, 255, 255, 0.5) 0%, transparent 70%)'
+                      : i % 3 === 1
+                      ? 'radial-gradient(circle, rgba(147, 197, 253, 0.4) 0%, transparent 70%)'
+                      : 'radial-gradient(circle, rgba(186, 230, 253, 0.3) 0%, transparent 70%)'),
                 width: `${150 + Math.random() * 250}px`,
                 height: `${150 + Math.random() * 250}px`,
                 top: `${Math.random() * 100}%`,
@@ -168,25 +203,43 @@ const CVGameModal = ({ isOpen, onClose }: CVGameModalProps) => {
         {/* Close button */}
         <button
           onClick={onClose}
-          className="absolute top-6 right-6 z-50 p-2 rounded-full bg-blue-950/90 hover:bg-blue-900 transition-all shadow-lg border-2 border-yellow-400/50"
+          className={`absolute top-6 right-6 z-50 p-2 rounded-full transition-all shadow-lg border-2 ${
+            isDarkMode
+              ? 'bg-blue-950/90 hover:bg-blue-900 border-yellow-400/50'
+              : 'bg-white/90 hover:bg-white border-blue-400/50'
+          }`}
         >
-          <X className="w-6 h-6 text-yellow-300" />
+          <X className={`w-6 h-6 ${isDarkMode ? 'text-yellow-300' : 'text-blue-600'}`} />
         </button>
 
-        {/* Message box - Van Gogh style */}
+        {/* Message box */}
         <div className="absolute top-16 sm:top-1/4 left-1/2 transform -translate-x-1/2 sm:-translate-y-1/2 z-40 text-center px-4">
-          <div className="bg-blue-950/90 backdrop-blur-md rounded-3xl p-4 sm:p-8 shadow-2xl border-2 border-yellow-400/50 max-w-md">
-            <Sparkles className="w-8 h-8 sm:w-12 sm:h-12 text-yellow-300 mx-auto mb-3 sm:mb-4 animate-pulse drop-shadow-[0_0_15px_rgba(234,179,8,0.8)]" />
-            <h2 className="text-2xl sm:text-3xl font-bold text-yellow-300 mb-3 sm:mb-4 drop-shadow-lg">
-              {t('game_title')}
+          <div className={`backdrop-blur-md rounded-3xl p-4 sm:p-8 shadow-2xl border-2 max-w-md ${
+            isDarkMode
+              ? 'bg-blue-950/90 border-yellow-400/50'
+              : 'bg-white/90 border-blue-400/50'
+          }`}>
+            {isDarkMode ? (
+              <Sparkles className="w-8 h-8 sm:w-12 sm:h-12 text-yellow-300 mx-auto mb-3 sm:mb-4 animate-pulse drop-shadow-[0_0_15px_rgba(234,179,8,0.8)]" />
+            ) : (
+              <Cloud className="w-8 h-8 sm:w-12 sm:h-12 text-blue-500 mx-auto mb-3 sm:mb-4 animate-pulse drop-shadow-[0_0_15px_rgba(59,130,246,0.8)]" />
+            )}
+            <h2 className={`text-2xl sm:text-3xl font-bold mb-3 sm:mb-4 drop-shadow-lg ${
+              isDarkMode ? 'text-yellow-300' : 'text-blue-600'
+            }`}>
+              {isDarkMode ? t('game_title_night') : t('game_title_day')}
             </h2>
-            <p className="text-blue-100 text-base sm:text-lg leading-relaxed">
-              {t('game_instruction')} <span className="font-bold text-yellow-400 text-2xl">{5 - caughtCount} {t('game_stars')}</span> {t('game_unlock')}
+            <p className={`text-base sm:text-lg leading-relaxed ${
+              isDarkMode ? 'text-blue-100' : 'text-gray-700'
+            }`}>
+              {t('game_instruction')} <span className={`font-bold text-2xl ${
+                isDarkMode ? 'text-yellow-400' : 'text-blue-600'
+              }`}>{5 - caughtCount} {isDarkMode ? t('game_stars') : t('game_clouds')}</span> {t('game_unlock')}
             </p>
           </div>
         </div>
 
-        {/* Sophisticated stars - Van Gogh style */}
+        {/* Stars ou Clouds selon le mode */}
         {stars.map(star => (
           <button
             key={star.id}
@@ -201,135 +254,88 @@ const CVGameModal = ({ isOpen, onClose }: CVGameModalProps) => {
               opacity: star.caught ? 0 : 1
             }}
           >
-            <div className="relative w-16 h-16 sm:w-20 sm:h-20">
-              {/* Multiple layered glows - Van Gogh halo effect */}
-              <div className="absolute inset-0 bg-gradient-radial from-yellow-300/60 via-amber-400/40 to-transparent rounded-full blur-3xl scale-150 animate-pulse" 
-                   style={{ animationDuration: '3s' }} />
-              <div className="absolute inset-0 bg-gradient-radial from-orange-400/50 via-yellow-500/30 to-transparent rounded-full blur-2xl scale-125 animate-pulse" 
-                   style={{ animationDuration: '2.5s', animationDelay: '0.3s' }} />
-              <div className="absolute inset-0 bg-gradient-radial from-pink-300/30 via-purple-400/20 to-transparent rounded-full blur-xl scale-110 animate-pulse" 
-                   style={{ animationDuration: '2s', animationDelay: '0.6s' }} />
-              
-              {/* Swirling paint strokes around star */}
-              <div className="absolute inset-0 animate-spin-slow">
-                {[0, 60, 120, 180, 240, 300].map((angle) => (
-                  <div
-                    key={angle}
-                    className="absolute w-2 h-10 origin-bottom"
-                    style={{
-                      left: '50%',
-                      top: '50%',
-                      transform: `translate(-50%, -100%) rotate(${angle}deg)`,
-                      background: `linear-gradient(to top, transparent, ${
-                        angle % 120 === 0 ? 'rgba(251, 191, 36, 0.6)' : 
-                        angle % 120 === 60 ? 'rgba(234, 179, 8, 0.5)' : 
-                        'rgba(251, 146, 60, 0.4)'
-                      })`,
-                      filter: 'blur(2px)',
-                      borderRadius: '50%'
-                    }}
-                  />
-                ))}
+            {isDarkMode ? (
+              // Étoile pour le mode nuit
+              <div className="relative w-16 h-16 sm:w-20 sm:h-20">
+                {/* Multiple layered glows */}
+                <div className="absolute inset-0 bg-gradient-radial from-yellow-300/60 via-amber-400/40 to-transparent rounded-full blur-3xl scale-150 animate-pulse" 
+                     style={{ animationDuration: '3s' }} />
+                <div className="absolute inset-0 bg-gradient-radial from-orange-400/50 via-yellow-500/30 to-transparent rounded-full blur-2xl scale-125 animate-pulse" 
+                     style={{ animationDuration: '2.5s', animationDelay: '0.3s' }} />
+                
+                {/* Star icon */}
+                <Star className="absolute inset-0 m-auto w-10 h-10 sm:w-12 sm:h-12 text-yellow-300 fill-yellow-300 drop-shadow-[0_0_20px_rgba(234,179,8,1)]" />
               </div>
-
-              {/* Main star with gradient */}
-              <div className="absolute inset-0 flex items-center justify-center">
-                <div className="relative">
-                  <Star className="w-12 h-12 sm:w-16 sm:h-16 fill-gradient-to-br from-yellow-300 to-amber-500 text-yellow-400 drop-shadow-[0_0_30px_rgba(234,179,8,1)] filter brightness-125 group-hover:brightness-150 group-active:brightness-150 group-hover:scale-110 group-active:scale-110 transition-all duration-300" 
-                       style={{ 
-                         fill: 'url(#starGradient)',
-                         filter: 'drop-shadow(0 0 20px rgba(234, 179, 8, 1)) drop-shadow(0 0 40px rgba(251, 191, 36, 0.8))'
-                       }} />
-                  
-                  {/* Rotating sparkles */}
-                  <div className="absolute inset-0 animate-spin" style={{ animationDuration: '4s' }}>
-                    {[0, 90, 180, 270].map((angle) => (
-                      <div
-                        key={angle}
-                        className="absolute w-1 h-1 bg-white rounded-full"
-                        style={{
-                          left: '50%',
-                          top: '50%',
-                          transform: `translate(-50%, -50%) rotate(${angle}deg) translateY(-25px)`,
-                          boxShadow: '0 0 10px rgba(255, 255, 255, 1), 0 0 20px rgba(234, 179, 8, 0.8)',
-                          animation: 'pulse 1.5s ease-in-out infinite',
-                          animationDelay: `${angle / 360}s`
-                        }}
-                      />
-                    ))}
-                  </div>
-                </div>
+            ) : (
+              // Nuage pour le mode jour
+              <div className="relative w-20 h-20 sm:w-24 sm:h-24">
+                {/* Glow pour le nuage */}
+                <div className="absolute inset-0 bg-gradient-radial from-blue-200/60 via-sky-300/40 to-transparent rounded-full blur-2xl scale-150 animate-pulse" 
+                     style={{ animationDuration: '3s' }} />
+                <div className="absolute inset-0 bg-gradient-radial from-white/80 via-blue-100/50 to-transparent rounded-full blur-xl scale-125 animate-pulse" 
+                     style={{ animationDuration: '2.5s', animationDelay: '0.3s' }} />
+                
+                {/* Cloud icon */}
+                <Cloud className="absolute inset-0 m-auto w-12 h-12 sm:w-14 sm:h-14 text-white fill-white drop-shadow-[0_0_20px_rgba(147,197,253,1)]" />
               </div>
-              
-              {/* Bright white core with pulsing effect */}
-              <div className="absolute inset-0 flex items-center justify-center">
-                <div className="w-4 h-4 bg-gradient-to-br from-white via-yellow-100 to-amber-200 rounded-full animate-pulse shadow-[0_0_25px_rgba(255,255,255,1),0_0_50px_rgba(234,179,8,0.8)]" 
-                     style={{ animationDuration: '1.5s' }} />
-              </div>
-
-              {/* Artistic paint splatters */}
-              <div className="absolute inset-0 opacity-60">
-                {[...Array(8)].map((_, i) => (
-                  <div
-                    key={i}
-                    className="absolute w-1 h-1 rounded-full"
-                    style={{
-                      left: `${50 + Math.cos((i * Math.PI) / 4) * 35}%`,
-                      top: `${50 + Math.sin((i * Math.PI) / 4) * 35}%`,
-                      background: i % 3 === 0 ? '#fbbf24' : i % 3 === 1 ? '#f59e0b' : '#ec4899',
-                      filter: 'blur(1px)',
-                      animation: 'pulse 2s ease-in-out infinite',
-                      animationDelay: `${i * 0.2}s`
-                    }}
-                  />
-                ))}
-              </div>
-            </div>
-
-            {/* SVG gradient definition */}
-            <svg width="0" height="0" className="absolute">
-              <defs>
-                <linearGradient id="starGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-                  <stop offset="0%" style={{ stopColor: '#fde047', stopOpacity: 1 }} />
-                  <stop offset="50%" style={{ stopColor: '#fbbf24', stopOpacity: 1 }} />
-                  <stop offset="100%" style={{ stopColor: '#f59e0b', stopOpacity: 1 }} />
-                </linearGradient>
-              </defs>
-            </svg>
+            )}
           </button>
         ))}
-
-        {/* Progress counter - Van Gogh style */}
-        <div className="absolute bottom-20 sm:bottom-12 left-1/2 transform -translate-x-1/2 z-40">
-          <div className="bg-blue-950/90 backdrop-blur-md rounded-full px-4 sm:px-8 py-3 sm:py-4 shadow-xl border-2 border-yellow-400/50">
-            <div className="flex items-center gap-2 sm:gap-3">
-              <span className="text-blue-100 font-medium text-sm sm:text-base">{t('game_progress')}</span>
-              <div className="flex gap-1 sm:gap-2">
-                {[...Array(5)].map((_, i) => (
-                  <Star
-                    key={i}
-                    className={`w-5 h-5 sm:w-7 sm:h-7 transition-all duration-300 ${
-                      i < caughtCount 
-                        ? 'fill-yellow-400 text-yellow-500 scale-125 drop-shadow-[0_0_15px_rgba(234,179,8,1)]' 
-                        : 'fill-blue-900 text-blue-800'
-                    }`}
-                  />
-                ))}
-              </div>
-              <span className="text-yellow-400 font-bold text-lg sm:text-xl ml-1 sm:ml-2">{caughtCount}/5</span>
-            </div>
-          </div>
-        </div>
 
         {/* Skip button */}
         <button
           onClick={skipGame}
-          className="absolute bottom-6 left-1/2 transform -translate-x-1/2 text-blue-200/50 hover:text-blue-100 text-sm opacity-50 hover:opacity-100 transition-all bg-transparent border-none cursor-pointer"
+          className={`absolute bottom-8 left-1/2 transform -translate-x-1/2 px-6 py-3 rounded-xl backdrop-blur-md transition-all shadow-lg border-2 ${
+            isDarkMode
+              ? 'bg-blue-950/80 hover:bg-blue-900/90 border-yellow-400/50 text-yellow-300'
+              : 'bg-white/80 hover:bg-white/90 border-blue-400/50 text-blue-600'
+          }`}
         >
           {t('game_skip')}
         </button>
 
-        {/* Confetti - Van Gogh colors */}
+        {/* Progress counter */}
+        <div className="absolute bottom-20 sm:bottom-24 left-1/2 transform -translate-x-1/2 z-40">
+          <div className={`backdrop-blur-md rounded-full px-4 sm:px-8 py-3 sm:py-4 shadow-xl border-2 ${
+            isDarkMode
+              ? 'bg-blue-950/90 border-yellow-400/50'
+              : 'bg-white/90 border-blue-400/50'
+          }`}>
+            <div className="flex items-center gap-2 sm:gap-3">
+              <span className={`font-medium text-sm sm:text-base ${isDarkMode ? 'text-blue-100' : 'text-gray-700'}`}>
+                {t('game_progress')}
+              </span>
+              <div className="flex gap-1 sm:gap-2">
+                {[...Array(5)].map((_, i) => (
+                  isDarkMode ? (
+                    <Star
+                      key={i}
+                      className={`w-5 h-5 sm:w-7 sm:h-7 transition-all duration-300 ${
+                        i < caughtCount 
+                          ? 'fill-yellow-400 text-yellow-500 scale-125 drop-shadow-[0_0_15px_rgba(234,179,8,1)]' 
+                          : 'fill-blue-900 text-blue-800'
+                      }`}
+                    />
+                  ) : (
+                    <Cloud
+                      key={i}
+                      className={`w-5 h-5 sm:w-7 sm:h-7 transition-all duration-300 ${
+                        i < caughtCount 
+                          ? 'fill-blue-500 text-blue-600 scale-125 drop-shadow-[0_0_15px_rgba(59,130,246,1)]' 
+                          : 'fill-gray-300 text-gray-400'
+                      }`}
+                    />
+                  )
+                ))}
+              </div>
+              <span className={`font-bold text-lg sm:text-xl ml-1 sm:ml-2 ${isDarkMode ? 'text-yellow-400' : 'text-blue-600'}`}>
+                {caughtCount}/5
+              </span>
+            </div>
+          </div>
+        </div>
+
+        {/* Confetti */}
         {showConfetti && (
           <div className="absolute inset-0 pointer-events-none overflow-hidden">
             {[...Array(60)].map((_, i) => (
@@ -356,18 +362,30 @@ const CVGameModal = ({ isOpen, onClose }: CVGameModalProps) => {
           </div>
         )}
 
-        {/* Success message - Van Gogh style */}
+        {/* Success message - adapté au thème */}
         {isComplete && (
           <div className="absolute inset-0 flex items-center justify-center z-50 pointer-events-none">
-            <div className="bg-blue-950/95 backdrop-blur-md rounded-3xl p-12 shadow-2xl border-4 border-yellow-400 animate-in zoom-in duration-500">
+            <div className={`backdrop-blur-md rounded-3xl p-12 shadow-2xl border-4 animate-in zoom-in duration-500 ${
+              isDarkMode 
+                ? 'bg-blue-950/95 border-yellow-400' 
+                : 'bg-white/95 border-blue-400'
+            }`}>
               <div className="text-center">
-                <div className="w-24 h-24 bg-gradient-to-br from-yellow-400 to-amber-500 rounded-full flex items-center justify-center mx-auto mb-6 animate-bounce shadow-[0_0_50px_rgba(234,179,8,0.9)]">
+                <div className={`w-24 h-24 bg-gradient-to-br rounded-full flex items-center justify-center mx-auto mb-6 animate-bounce ${
+                  isDarkMode
+                    ? 'from-yellow-400 to-amber-500 shadow-[0_0_50px_rgba(234,179,8,0.9)]'
+                    : 'from-blue-400 to-sky-500 shadow-[0_0_50px_rgba(59,130,246,0.9)]'
+                }`}>
                   <Sparkles className="w-12 h-12 text-white drop-shadow-lg" />
                 </div>
-                <h3 className="text-5xl font-bold text-yellow-300 mb-3 drop-shadow-[0_0_25px_rgba(234,179,8,0.9)]">
-                  {t('game_success')}
+                <h3 className={`text-5xl font-bold mb-3 ${
+                  isDarkMode
+                    ? 'text-yellow-300 drop-shadow-[0_0_25px_rgba(234,179,8,0.9)]'
+                    : 'text-blue-600 drop-shadow-[0_0_25px_rgba(59,130,246,0.9)]'
+                }`}>
+                  {isDarkMode ? t('game_success_night') : t('game_success_day')}
                 </h3>
-                <p className="text-blue-100 text-xl">
+                <p className={`text-xl ${isDarkMode ? 'text-blue-100' : 'text-gray-700'}`}>
                   {t('game_downloading')}
                 </p>
               </div>
