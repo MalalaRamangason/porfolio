@@ -5,9 +5,10 @@ import CVGameModal from "./CVGameModal";
 import { useLanguage } from "@/contexts/LanguageContext";
 
 const Hero = () => {
-  const { t } = useLanguage();
+  const { t, language } = useLanguage();
   const [isGameOpen, setIsGameOpen] = useState(false);
   const [isDark, setIsDark] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
 
   useEffect(() => {
     // Détecte le mode dark initial
@@ -15,7 +16,13 @@ const Hero = () => {
       setIsDark(document.documentElement.classList.contains('dark'));
     };
     
+    // Détecte si on est sur mobile
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+    
     checkDarkMode();
+    checkMobile();
     
     // Observer les changements de classe dark sur le HTML
     const observer = new MutationObserver(checkDarkMode);
@@ -24,11 +31,33 @@ const Hero = () => {
       attributeFilter: ['class']
     });
     
-    return () => observer.disconnect();
+    // Écouter le redimensionnement
+    window.addEventListener('resize', checkMobile);
+    
+    return () => {
+      observer.disconnect();
+      window.removeEventListener('resize', checkMobile);
+    };
   }, []);
 
   const scrollToProjects = () => {
     document.getElementById('projects')?.scrollIntoView({ behavior: 'smooth' });
+  };
+
+  const handleDownloadCV = () => {
+    // Sur mobile, télécharger directement sans le jeu
+    if (isMobile) {
+      const cvFile = language === 'en' ? 'CV-EN-Malala-Ramangason.pdf' : 'CV-FR-Malala-Ramangason.pdf';
+      const link = document.createElement('a');
+      link.href = `/${cvFile}`;
+      link.download = cvFile;
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+    } else {
+      // Sur desktop, ouvrir le jeu
+      setIsGameOpen(true);
+    }
   };
 
   return (
@@ -146,7 +175,7 @@ const Hero = () => {
               <Button
                 variant="outline"
                 size="lg"
-                onClick={() => setIsGameOpen(true)}
+                onClick={handleDownloadCV}
                 className="border-2 border-white/90 bg-white/10 backdrop-blur-sm text-white hover:bg-white hover:text-blue-900 font-semibold px-8 py-6 text-base rounded-lg transition-all"
               >
                 <Download className="w-5 h-5 mr-2" />
