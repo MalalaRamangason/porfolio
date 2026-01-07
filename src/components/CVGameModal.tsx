@@ -1,4 +1,4 @@
-import { useEffect, useState, useRef } from "react";
+import { useEffect, useState, useRef, useCallback } from "react";
 import { X, Star, Sparkles, Cloud } from "lucide-react";
 import { useLanguage } from "@/contexts/LanguageContext";
 
@@ -23,20 +23,25 @@ const CVGameModal = ({ isOpen, onClose }: CVGameModalProps) => {
   const [isComplete, setIsComplete] = useState(false);
   const [showConfetti, setShowConfetti] = useState(false);
   const [isDarkMode, setIsDarkMode] = useState(() => document.documentElement.classList.contains('dark'));
+  const [isMobile, setIsMobile] = useState(() => window.innerWidth < 768);
   const gameRef = useRef<HTMLDivElement>(null);
   const animationRef = useRef<number>();
   const lastInteractionRef = useRef<number>(0);
 
-  // Detect dark mode
+  // Detect dark mode and mobile
   useEffect(() => {
     const checkDarkMode = () => {
       const isDark = document.documentElement.classList.contains('dark');
-      console.log('Dark mode detected:', isDark); // Debug log
       setIsDarkMode(isDark);
+    };
+    
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 768);
     };
     
     // Check immediately
     checkDarkMode();
+    checkMobile();
     
     // Observer pour détecter les changements de thème
     const observer = new MutationObserver(() => {
@@ -48,7 +53,13 @@ const CVGameModal = ({ isOpen, onClose }: CVGameModalProps) => {
       attributeFilter: ['class']
     });
     
-    return () => observer.disconnect();
+    // Listen to window resize
+    window.addEventListener('resize', checkMobile);
+    
+    return () => {
+      observer.disconnect();
+      window.removeEventListener('resize', checkMobile);
+    };
   }, []);
 
   useEffect(() => {
@@ -61,33 +72,39 @@ const CVGameModal = ({ isOpen, onClose }: CVGameModalProps) => {
     }
 
     // Generate stars scattered across the screen (not top or bottom)
+    const requiredCatches = isMobile ? 3 : 5;
+    const maxStars = isMobile ? 15 : 20;
     const interval = setInterval(() => {
-      if (stars.length < 20 && caughtCount < 5) {
-        const newStar: Star = {
-          id: Date.now() + Math.random(),
-          x: 10 + Math.random() * 80, // 10% to 90% of width
-          y: 20 + Math.random() * 60, // 20% to 80% of height (avoid top and bottom)
-          speed: 0, // Static stars, no falling
-          rotation: Math.random() * 360,
-          caught: false
-        };
-        setStars(prev => [...prev, newStar]);
-      }
-    }, 400);
+      setStars(prev => {
+        if (prev.length < maxStars) {
+          const newStar: Star = {
+            id: Date.now() + Math.random(),
+            x: 10 + Math.random() * 80, // 10% to 90% of width
+            y: 20 + Math.random() * 60, // 20% to 80% of height (avoid top and bottom)
+            speed: 0, // Static stars, no falling
+            rotation: Math.random() * 360,
+            caught: false
+          };
+          return [...prev, newStar];
+        }
+        return prev;
+      });
+    }, isMobile ? 600 : 400);
 
     return () => clearInterval(interval);
-  }, [isOpen, stars.length, caughtCount]);
+  }, [isOpen, isMobile]);
 
   // Animation loop for star rotation only
   useEffect(() => {
     if (!isOpen) return;
 
     const animate = () => {
+      const rotationSpeed = isMobile ? 0.5 : 1;
       setStars(prev => 
         prev
           .map(star => ({
             ...star,
-            rotation: star.rotation + 1
+            rotation: star.rotation + rotationSpeed
           }))
           .filter(star => !star.caught)
       );
@@ -102,11 +119,23 @@ const CVGameModal = ({ isOpen, onClose }: CVGameModalProps) => {
         cancelAnimationFrame(animationRef.current);
       }
     };
-  }, [isOpen]);
+  }, [isOpen, isMobile]);
+
+  // Download CV function
+  const downloadCV = useCallback(() => {
+    const cvFile = language === 'en' ? 'CV-EN-Malala-Ramangason.pdf' : 'CV-FR-Malala-Ramangason.pdf';
+    const link = document.createElement('a');
+    link.href = `/${cvFile}`;
+    link.download = cvFile;
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  }, [language]);
 
   // Check for completion
   useEffect(() => {
-    if (caughtCount >= 5 && !isComplete) {
+    const requiredCatches = isMobile ? 3 : 5;
+    if (caughtCount >= requiredCatches && !isComplete) {
       setIsComplete(true);
       setShowConfetti(true);
       
@@ -118,7 +147,7 @@ const CVGameModal = ({ isOpen, onClose }: CVGameModalProps) => {
         }, 2000);
       }, 1500);
     }
-  }, [caughtCount, isComplete, onClose]);
+  }, [caughtCount, isComplete, onClose, isMobile, downloadCV]);
 
   const catchStar = (starId: number) => {
     setStars(prev => prev.map(star => 
@@ -144,16 +173,6 @@ const CVGameModal = ({ isOpen, onClose }: CVGameModalProps) => {
     }
     
     catchStar(starId);
-  };
-
-  const downloadCV = () => {
-    const cvFile = language === 'en' ? 'CV-EN-Malala-Ramangason.pdf' : 'CV-FR-Malala-Ramangason.pdf';
-    const link = document.createElement('a');
-    link.href = `/${cvFile}`;
-    link.download = cvFile;
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
   };
 
   const skipGame = () => {
@@ -241,7 +260,7 @@ const CVGameModal = ({ isOpen, onClose }: CVGameModalProps) => {
             }`}>
               {t('game_instruction')} <span className={`font-bold text-2xl ${
                 isDarkMode ? 'text-yellow-400' : 'text-blue-600'
-              }`}>{5 - caughtCount} {isDarkMode ? t('game_stars') : t('game_clouds')}</span> {t('game_unlock')}
+              }`}>{(isMobile ? 3 : 5) - caughtCount} {isDarkMode ? t('game_stars') : t('game_clouds')}</span> {t('game_unlock')}
             </p>
           </div>
         </div>
@@ -263,7 +282,7 @@ const CVGameModal = ({ isOpen, onClose }: CVGameModalProps) => {
           >
             {isDarkMode ? (
               // Étoile pour le mode nuit
-              <div className="relative w-16 h-16 sm:w-20 sm:h-20">
+              <div className={`relative ${isMobile ? 'w-24 h-24' : 'w-16 h-16 sm:w-20 sm:h-20'}`}>
                 {/* Multiple layered glows */}
                 <div className="absolute inset-0 bg-gradient-radial from-yellow-300/60 via-amber-400/40 to-transparent rounded-full blur-3xl scale-150 animate-pulse" 
                      style={{ animationDuration: '3s' }} />
@@ -271,11 +290,11 @@ const CVGameModal = ({ isOpen, onClose }: CVGameModalProps) => {
                      style={{ animationDuration: '2.5s', animationDelay: '0.3s' }} />
                 
                 {/* Star icon */}
-                <Star className="absolute inset-0 m-auto w-10 h-10 sm:w-12 sm:h-12 text-yellow-300 fill-yellow-300 drop-shadow-[0_0_20px_rgba(234,179,8,1)]" />
+                <Star className={`absolute inset-0 m-auto ${isMobile ? 'w-14 h-14' : 'w-10 h-10 sm:w-12 sm:h-12'} text-yellow-300 fill-yellow-300 drop-shadow-[0_0_20px_rgba(234,179,8,1)]`} />
               </div>
             ) : (
               // Nuage pour le mode jour
-              <div className="relative w-20 h-20 sm:w-24 sm:h-24">
+              <div className={`relative ${isMobile ? 'w-28 h-28' : 'w-20 h-20 sm:w-24 sm:h-24'}`}>
                 {/* Glow pour le nuage */}
                 <div className="absolute inset-0 bg-gradient-radial from-blue-200/60 via-sky-300/40 to-transparent rounded-full blur-2xl scale-150 animate-pulse" 
                      style={{ animationDuration: '3s' }} />
@@ -283,7 +302,7 @@ const CVGameModal = ({ isOpen, onClose }: CVGameModalProps) => {
                      style={{ animationDuration: '2.5s', animationDelay: '0.3s' }} />
                 
                 {/* Cloud icon */}
-                <Cloud className="absolute inset-0 m-auto w-12 h-12 sm:w-14 sm:h-14 text-white fill-white drop-shadow-[0_0_20px_rgba(147,197,253,1)]" />
+                <Cloud className={`absolute inset-0 m-auto ${isMobile ? 'w-16 h-16' : 'w-12 h-12 sm:w-14 sm:h-14'} text-white fill-white drop-shadow-[0_0_20px_rgba(147,197,253,1)]`} />
               </div>
             )}
           </button>
@@ -313,7 +332,7 @@ const CVGameModal = ({ isOpen, onClose }: CVGameModalProps) => {
                 {t('game_progress')}
               </span>
               <div className="flex gap-1 sm:gap-2">
-                {[...Array(5)].map((_, i) => (
+                {[...Array(isMobile ? 3 : 5)].map((_, i) => (
                   isDarkMode ? (
                     <Star
                       key={i}
@@ -336,7 +355,7 @@ const CVGameModal = ({ isOpen, onClose }: CVGameModalProps) => {
                 ))}
               </div>
               <span className={`font-bold text-lg sm:text-xl ml-1 sm:ml-2 ${isDarkMode ? 'text-yellow-400' : 'text-blue-600'}`}>
-                {caughtCount}/5
+                {caughtCount}/{isMobile ? 3 : 5}
               </span>
             </div>
           </div>
