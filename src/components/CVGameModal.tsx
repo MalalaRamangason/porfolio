@@ -157,7 +157,10 @@ const CVGameModal = ({ isOpen, onClose }: CVGameModalProps) => {
   };
 
   const handleStarInteraction = (e: React.MouseEvent | React.TouchEvent, starId: number) => {
-    e.preventDefault();
+    // Only preventDefault for mouse events, not touch (passive listeners)
+    if (e.type === 'click') {
+      e.preventDefault();
+    }
     e.stopPropagation();
     
     // Éviter les doubles clics (touch + click)
@@ -270,14 +273,15 @@ const CVGameModal = ({ isOpen, onClose }: CVGameModalProps) => {
           <button
             key={star.id}
             onClick={(e) => handleStarInteraction(e, star.id)}
-            onTouchStart={(e) => handleStarInteraction(e, star.id)}
-            className="absolute transition-all duration-500 hover:scale-125 active:scale-150 cursor-pointer group z-30 touch-none"
+            onTouchEnd={(e) => handleStarInteraction(e, star.id)}
+            className="absolute transition-all duration-500 hover:scale-125 active:scale-150 cursor-pointer group z-30"
             style={{
               left: `${star.x}%`,
               top: `${star.y}%`,
               transform: `rotate(${star.rotation}deg)`,
               pointerEvents: star.caught ? 'none' : 'auto',
-              opacity: star.caught ? 0 : 1
+              opacity: star.caught ? 0 : 1,
+              touchAction: 'none'
             }}
           >
             {isDarkMode ? (
