@@ -167,13 +167,15 @@ export const certificatesData = {
       title: "Adobe After Effects",
       organization: "Orange Digital Center Madagascar",
       date: "March 2025",
-      type: "Course Completion"
+      type: "Course Completion",
+      image: "/certificates/adobe-after-effects.jpg"
     },
     {
       title: "Figma for UX/UI Design",
       organization: "Orange Digital Center Madagascar",
       date: "February 2024",
-      type: "Course Completion"
+      type: "Course Completion",
+      image: "/certificates/figma-ux-ui.jpg"
     },
   ],
   fr: [
@@ -181,13 +183,15 @@ export const certificatesData = {
       title: "Adobe After Effects",
       organization: "Orange Digital Center Madagascar",
       date: "Mars 2025",
-      type: "Certification Complétée"
+      type: "Certification Complétée",
+      image: "/certificates/adobe-after-effects.jpg"
     },
     {
       title: "Figma pour Design UX/UI",
       organization: "Orange Digital Center Madagascar",
       date: "Février 2024",
-      type: "Certification Complétée"
+      type: "Certification Complétée",
+      image: "/certificates/figma-ux-ui.jpg"
     },
   ]
 };
