@@ -11,6 +11,12 @@ const Skills = () => {
   
   const fullText = `${t('skills_overview_title')}\n\n${t('skills_overview_desc')}`;
 
+  // Réinitialiser l'animation quand le texte change (changement de langue)
+  useEffect(() => {
+    setDisplayedText('');
+    setCurrentIndex(0);
+  }, [fullText]);
+
   useEffect(() => {
     if (currentIndex < fullText.length) {
       const timeout = setTimeout(() => {

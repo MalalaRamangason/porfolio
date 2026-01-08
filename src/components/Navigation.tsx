@@ -48,11 +48,18 @@ const Navigation = () => {
           <div className="flex-shrink-0">
             <button
               onClick={() => scrollToSection('#home')}
-              className={`text-2xl font-bold transition-colors ${
-                isScrolled ? 'text-ocean-deep dark:text-white' : 'text-white'
-              }`}
+              className="flex flex-col items-start"
             >
-              Malala
+              <span className={`text-2xl font-bold transition-colors ${
+                isScrolled ? 'text-ocean-deep dark:text-white' : 'text-white'
+              }`}>
+                Malala
+              </span>
+              <span className={`text-xs font-medium transition-colors ${
+                isScrolled ? 'text-ocean-primary dark:text-blue-400' : 'text-cyan-300'
+              }`}>
+                Problem Solver
+              </span>
             </button>
           </div>
 
