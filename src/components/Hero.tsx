@@ -172,38 +172,37 @@ const Hero = () => {
           </div>
 
           {/* TABLET: Layout 2 colonnes compact (768px-1023px) */}
-          <div className="hidden md:flex lg:hidden w-full items-end gap-0">
+          <div className="hidden md:flex lg:hidden w-full items-center gap-4">
             
             {/* Left: Text Content */}
-            <div className="flex-1 text-white space-y-4 pr-6 self-center pb-16">
-              <h2 className="text-4xl font-bold text-white">
+            <div className="flex-1 text-white space-y-3 pr-4">
+              <h2 className="text-3xl md:text-4xl font-bold text-white">
                 {t('hero_greeting')}
               </h2>
 
-              <h1 className="text-4xl font-bold leading-tight">
-                <span className="text-white">I'm </span>
+              <h1 className="text-3xl md:text-4xl font-bold leading-tight">
                 <span className="text-cyan-400">Malala Ramangason</span>
               </h1>
 
-              <h3 className="text-xl font-medium text-white/90">
+              <h3 className="text-lg md:text-xl font-medium text-white/90">
                 {t('hero_title')}
               </h3>
 
-              <p className="text-base text-blue-100/90 dark:text-blue-200/80 font-light">
+              <p className="text-sm md:text-base text-blue-50/90 dark:text-blue-200/80 font-light">
                 {t('hero_subtitle')}
               </p>
 
-              <p className="text-sm text-blue-50/80 dark:text-blue-100/70 leading-relaxed max-w-md">
+              <p className="text-xs md:text-sm text-blue-50/80 dark:text-blue-100/70 leading-relaxed max-w-md">
                 {t('hero_description')}
               </p>
 
-              <div className="flex gap-4 pt-4">
+              <div className="flex flex-col sm:flex-row gap-3 pt-3">
                 <Button
                   onClick={scrollToProjects}
                   size="lg"
-                  className="bg-cyan-400 hover:bg-cyan-500 text-blue-900 font-semibold px-7 py-5 text-base rounded-lg transition-all shadow-lg shadow-cyan-500/30 hover:shadow-cyan-500/50"
+                  className="bg-cyan-400 hover:bg-cyan-500 text-blue-900 font-semibold px-6 py-4 text-sm md:text-base rounded-lg transition-all shadow-lg shadow-cyan-500/30 hover:shadow-cyan-500/50"
                 >
-                  <Eye className="w-5 h-5 mr-2" />
+                  <Eye className="w-4 h-4 mr-2" />
                   {t('hero_view_projects')}
                 </Button>
 
@@ -211,17 +210,17 @@ const Hero = () => {
                   variant="outline"
                   size="lg"
                   onClick={handleDownloadCV}
-                  className="border-2 border-white/90 bg-white/10 backdrop-blur-sm text-white hover:bg-white hover:text-blue-900 font-semibold px-7 py-5 text-base rounded-lg transition-all"
+                  className="border-2 border-white/90 bg-white/10 backdrop-blur-sm text-white hover:bg-white hover:text-blue-900 font-semibold px-6 py-4 text-sm md:text-base rounded-lg transition-all"
                 >
-                  <Download className="w-5 h-5 mr-2" />
+                  <Download className="w-4 h-4 mr-2" />
                   {t('hero_download_cv')}
                 </Button>
               </div>
             </div>
 
-            {/* Right: Portrait alignée en bas, collée au bord */}
+            {/* Right: Portrait plus grande, alignée en bas */}
             <div className="flex-shrink-0 flex items-end pb-0 -mb-1 -mr-6">
-              <div className="relative w-[380px]">
+              <div className="relative w-[420px] md:w-[480px]">
                 <img 
                   src="/projects/profil-nobg.png" 
                   alt="Malala Ramangason"
