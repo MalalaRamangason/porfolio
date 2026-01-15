@@ -12,6 +12,18 @@ export const experiencesData = {
       ]
     },
     {
+      company: "42 School",
+      position: "Piscine 42 Participant",
+      duration: "September 2025",
+      achievements: [
+        "Intensive programming bootcamp focused on C language and Unix/Linux systems",
+        "Developed strong problem-solving skills and algorithmic thinking",
+        "Enhanced teamwork and peer-to-peer learning abilities",
+        "Built self-learning capabilities and discipline through challenging exercises",
+        "Gained practical experience with Linux command line and system programming"
+      ]
+    },
+    {
       company: "Ministry of Economy and Finance Madagascar",
       position: "Software Developer Intern",
       duration: "April 2025 - July 2025",
@@ -40,6 +52,18 @@ export const experiencesData = {
         "Personnalisation du système ERP pour les exigences de données légales et la conformité",
         "Utilisation de scripts Python pour l'automatisation et le traitement des données",
         "Développement d'un microservice FX pour la gestion des taux de change dans un environnement fintech"
+      ]
+    },
+    {
+      company: "42 School",
+      position: "Participant Piscine 42",
+      duration: "Septembre 2025",
+      achievements: [
+        "Bootcamp de programmation intensive axé sur le langage C et les systèmes Unix/Linux",
+        "Développement de solides compétences en résolution de problèmes et pensée algorithmique",
+        "Renforcement des capacités de travail en équipe et d'apprentissage par les pairs",
+        "Construction de capacités d'auto-apprentissage et de discipline à travers des exercices challengeants",
+        "Acquisition d'expérience pratique avec la ligne de commande Linux et la programmation système"
       ]
     },
     {
