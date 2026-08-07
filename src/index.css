@@ -93,6 +93,81 @@ All colors MUST be HSL.
     --sidebar-ring: 217.2 91.2% 59.8%;
   }
 
+  .theme-pinky {
+    --background: 330 60% 98%;
+    --foreground: 330 40% 15%;
+    --card: 330 50% 99%;
+    --card-foreground: 330 40% 15%;
+    --primary: 330 85% 62%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 320 50% 93%;
+    --secondary-foreground: 330 40% 15%;
+    --muted: 325 40% 95%;
+    --muted-foreground: 330 25% 45%;
+    --accent: 300 60% 70%;
+    --accent-foreground: 330 40% 15%;
+    --border: 330 40% 88%;
+    --input: 330 40% 88%;
+    --ring: 330 85% 62%;
+    --ocean-deep: 330 60% 25%;
+    --ocean-primary: 330 85% 62%;
+    --ocean-light: 330 80% 75%;
+    --ocean-mist: 325 60% 92%;
+    --ocean-wave: 300 60% 70%;
+    --gradient-hero: linear-gradient(135deg, hsl(330 60% 25%) 0%, hsl(330 85% 62%) 50%, hsl(300 70% 80%) 100%);
+    --gradient-border: linear-gradient(90deg, hsl(330 85% 62%), hsl(300 60% 70%), hsl(330 85% 62%));
+    --shadow-ocean: 0 10px 40px -12px hsl(330 85% 62% / 0.35);
+    --shadow-wave: 0 4px 20px -4px hsl(330 85% 62% / 0.25);
+  }
+
+  .theme-forest {
+    --background: 140 20% 97%;
+    --foreground: 140 40% 8%;
+    --card: 0 0% 100%;
+    --card-foreground: 140 40% 8%;
+    --primary: 142 70% 40%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 140 30% 92%;
+    --secondary-foreground: 140 40% 8%;
+    --muted: 140 30% 94%;
+    --muted-foreground: 140 20% 45%;
+    --accent: 142 60% 55%;
+    --accent-foreground: 140 40% 8%;
+    --border: 140 30% 88%;
+    --input: 140 30% 88%;
+    --ring: 142 70% 40%;
+    --ocean-deep: 140 60% 12%;
+    --ocean-primary: 142 70% 40%;
+    --ocean-light: 142 60% 55%;
+    --ocean-mist: 140 40% 88%;
+    --ocean-wave: 145 65% 35%;
+    --gradient-hero: linear-gradient(135deg, hsl(140 60% 12%) 0%, hsl(142 60% 55%) 50%, hsl(80 60% 75%) 100%);
+  }
+
+  .theme-sunset {
+    --background: 30 30% 98%;
+    --foreground: 20 40% 8%;
+    --card: 0 0% 100%;
+    --card-foreground: 20 40% 8%;
+    --primary: 25 95% 55%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 30 40% 92%;
+    --secondary-foreground: 20 40% 8%;
+    --muted: 30 30% 94%;
+    --muted-foreground: 25 20% 45%;
+    --accent: 340 80% 60%;
+    --accent-foreground: 20 40% 8%;
+    --border: 30 30% 88%;
+    --input: 30 30% 88%;
+    --ring: 25 95% 55%;
+    --ocean-deep: 20 80% 15%;
+    --ocean-primary: 25 95% 55%;
+    --ocean-light: 35 90% 65%;
+    --ocean-mist: 30 50% 90%;
+    --ocean-wave: 340 80% 60%;
+    --gradient-hero: linear-gradient(135deg, hsl(20 80% 15%) 0%, hsl(25 95% 55%) 50%, hsl(340 80% 70%) 100%);
+  }
+
   .dark {
     /* Dark Ocean Theme */
     --background: 210 100% 4%;
