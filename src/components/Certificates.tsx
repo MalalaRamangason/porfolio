@@ -32,7 +32,7 @@ const Certificates = () => {
               onClick={() => setSelectedCert(cert)}
             >
               <CardHeader className="pb-3">
-                <CardTitle className="text-lg text-ocean-deep leading-tight text-center">
+                <CardTitle className="text-lg text-foreground leading-tight text-center">
                   {cert.title}
                 </CardTitle>
               </CardHeader>
@@ -77,7 +77,7 @@ const Certificates = () => {
                   </div>
 
                   <div className="p-8 text-center space-y-4">
-                    <h3 className="text-2xl font-bold text-ocean-deep">
+                    <h3 className="text-2xl font-bold text-foreground">
                       {selectedCert.title}
                     </h3>
                     <p className="text-lg text-ocean-primary font-semibold">

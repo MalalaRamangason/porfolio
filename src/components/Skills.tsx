@@ -70,9 +70,9 @@ const Skills = () => {
   const getLevelColor = (level: string) => {
     switch (level) {
       case "Advanced":
-        return "bg-ocean-primary text-white";
+        return "bg-ocean-primary dark:text-ocean-primary text-white";
       case "Intermediate":
-        return "bg-ocean-light text-ocean-deep";
+        return "bg-ocean-light dark:text-ocean-primary text-foreground";
       case "Beginner":
         return "bg-ocean-mist text-ocean-deep";
       default:
@@ -100,7 +100,7 @@ const Skills = () => {
               className="hover:shadow-wave transition-all duration-300 border-ocean-light/20 bg-card/80 backdrop-blur-sm"
             >
               <CardHeader>
-                <CardTitle className="text-xl text-ocean-deep flex items-center gap-3">
+                <CardTitle className="text-xl text-foreground flex items-center gap-3">
                   <div className="p-2 bg-ocean-primary/10 rounded-lg text-ocean-primary">
                     {category.icon}
                   </div>

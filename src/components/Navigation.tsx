@@ -52,7 +52,7 @@ const Navigation = () => {
               className="flex flex-col items-start"
             >
               <span className={`text-2xl font-bold transition-colors ${
-                isScrolled ? 'text-ocean-deep' : 'text-white'
+                isScrolled ? 'text-foreground' : 'text-white'
               }`}>
                 Malala
               </span>
@@ -72,8 +72,7 @@ const Navigation = () => {
                   key={item.name}
                   onClick={() => scrollToSection(item.href)}
                   className={`px-3 py-2 rounded-md text-sm font-medium transition-colors hover:text-ocean-primary dark:hover:text-blue-400 ${
-                    isScrolled 
-                      ? 'text-ocean-deep hover:bg-ocean-mist/50' 
+                    isScrolled ? 'text-foreground hover:bg-ocean-mist/50' 
                       : 'text-white hover:bg-white/10'
                   }`}
                 >
@@ -95,7 +94,7 @@ const Navigation = () => {
               variant="ghost"
               size="sm"
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-              className={isScrolled ? 'text-ocean-deep' : 'text-white'}
+              className={isScrolled ? 'text-foreground' : 'text-white'}
             >
               {isMobileMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
             </Button>
@@ -110,7 +109,7 @@ const Navigation = () => {
                 <button
                   key={item.name}
                   onClick={() => scrollToSection(item.href)}
-                  className="block px-3 py-2 rounded-md text-base font-medium text-ocean-deep hover:text-ocean-primary hover:bg-ocean-mist/50 w-full text-left transition-colors"
+                  className="block px-3 py-2 rounded-md text-base font-medium text-foreground hover:text-ocean-primary hover:bg-ocean-mist/50 w-full text-left transition-colors"
                 >
                   {item.name}
                 </button>

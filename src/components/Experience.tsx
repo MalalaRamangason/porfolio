@@ -27,7 +27,7 @@ const Experience = () => {
               <CardHeader>
                 <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
                   <div>
-                    <CardTitle className="text-xl text-ocean-deep">{exp.company}</CardTitle>
+                    <CardTitle className="text-xl text-foreground">{exp.company}</CardTitle>
                     <p className="text-ocean-primary font-semibold">{exp.position}</p>
                   </div>
                   <Badge variant="outline" className="w-fit border-ocean-primary text-ocean-primary">

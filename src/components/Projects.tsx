@@ -94,11 +94,6 @@ const Projects = () => {
                 >
                   {/* Glassmorphism Card - bordure et background apparaissent après le zoom */}
                   <motion.div 
-                    style={{ 
-                      backgroundColor: useTransform(scrollYProgress, [0.2, 0.4], 
-                        ['transparent', 'rgb(255 255 255 / 1)']
-                      ),
-                    }}
                     className="relative h-full rounded-2xl border bg-card shadow-lg hover:shadow-2xl transition-all duration-500 hover:scale-[1.02] hover:-translate-y-1 overflow-hidden flex flex-col min-h-[500px]"
                   >
                     {/* Border qui apparaît */}
@@ -176,10 +171,10 @@ const Projects = () => {
 
                         {/* The Solution */}
                         <div className="bg-ocean-mist/40 rounded-lg p-3 border border-ocean-light/30">
-                          <h4 className="text-xs font-semibold text-ocean-deep uppercase tracking-wider mb-1.5">
+                          <h4 className="text-xs font-semibold text-foreground uppercase tracking-wider mb-1.5">
                             {t('projects_solution')}
                           </h4>
-                          <p className="text-ocean-deep/90 text-xs leading-relaxed font-medium line-clamp-3">
+                          <p className="text-foreground/80 text-xs leading-relaxed font-medium line-clamp-3">
                             {project.solution}
                           </p>
                         </div>

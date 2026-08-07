@@ -103,7 +103,7 @@ const Hero = () => {
               <Button
                 onClick={scrollToProjects}
                 size="lg"
-                className="bg-ocean-light hover:bg-ocean-primary text-ocean-deep font-semibold px-8 py-6 text-base rounded-lg transition-all shadow-lg"
+                className="bg-ocean-light hover:bg-ocean-primary text-foreground font-semibold px-8 py-6 text-base rounded-lg transition-all shadow-lg"
               >
                 <Eye className="w-5 h-5 mr-2" />
                 {t('hero_view_projects')}
@@ -112,7 +112,7 @@ const Hero = () => {
                 variant="outline"
                 size="lg"
                 onClick={handleDownloadCV}
-                className="border-2 border-white/90 bg-white/10 backdrop-blur-sm text-white hover:bg-white hover:text-ocean-deep font-semibold px-8 py-6 text-base rounded-lg transition-all"
+                className="border-2 border-white/90 bg-white/10 backdrop-blur-sm text-white hover:bg-white hover:text-foreground font-semibold px-8 py-6 text-base rounded-lg transition-all"
               >
                 <Download className="w-5 h-5 mr-2" />
                 {t('hero_download_cv')}
@@ -134,7 +134,7 @@ const Hero = () => {
                 <Button
                   onClick={scrollToProjects}
                   size="lg"
-                  className="bg-ocean-light hover:bg-ocean-primary text-ocean-deep font-semibold px-6 py-4 text-sm md:text-base rounded-lg transition-all shadow-lg"
+                  className="bg-ocean-light hover:bg-ocean-primary text-foreground font-semibold px-6 py-4 text-sm md:text-base rounded-lg transition-all shadow-lg"
                 >
                   <Eye className="w-4 h-4 mr-2" />
                   {t('hero_view_projects')}
@@ -143,7 +143,7 @@ const Hero = () => {
                   variant="outline"
                   size="lg"
                   onClick={handleDownloadCV}
-                  className="border-2 border-white/90 bg-white/10 backdrop-blur-sm text-white hover:bg-white hover:text-ocean-deep font-semibold px-6 py-4 text-sm md:text-base rounded-lg transition-all"
+                  className="border-2 border-white/90 bg-white/10 backdrop-blur-sm text-white hover:bg-white hover:text-foreground font-semibold px-6 py-4 text-sm md:text-base rounded-lg transition-all"
                 >
                   <Download className="w-4 h-4 mr-2" />
                   {t('hero_download_cv')}
@@ -175,7 +175,7 @@ const Hero = () => {
                 <Button
                   onClick={scrollToProjects}
                   size="lg"
-                  className="bg-ocean-light hover:bg-ocean-primary text-ocean-deep font-semibold px-8 py-6 text-base rounded-lg transition-all shadow-lg"
+                  className="bg-ocean-light hover:bg-ocean-primary text-foreground font-semibold px-8 py-6 text-base rounded-lg transition-all shadow-lg"
                 >
                   <Eye className="w-5 h-5 mr-2" />
                   {t('hero_view_projects')}
@@ -195,7 +195,7 @@ const Hero = () => {
             </div>
 
             <div className="flex-shrink-0 w-[300px] xl:w-[340px] self-start pt-20">
-              <div className="bg-white/10 backdrop-blur-md rounded-2xl p-6 border border-white/20 shadow-xl space-y-4">
+              <div className="bg-black/30 backdrop-blur-md rounded-2xl p-6 border border-white/40 shadow-xl space-y-4">
                 <p className="text-ocean-light text-sm font-semibold uppercase tracking-wide">
                   {t('hero_subtitle')}
                 </p>
@@ -206,7 +206,7 @@ const Hero = () => {
                   onClick={handleDownloadCV}
                   variant="outline"
                   size="lg"
-                  className="w-full border-2 border-ocean-light bg-transparent text-ocean-light hover:bg-ocean-light hover:text-ocean-deep font-semibold px-6 py-5 text-sm rounded-lg transition-all"
+                  className="w-full border-2 border-ocean-light bg-transparent text-ocean-light hover:bg-ocean-light hover:text-foreground font-semibold px-6 py-5 text-sm rounded-lg transition-all"
                 >
                   <Download className="w-4 h-4 mr-2" />
                   {t('hero_download_cv')}

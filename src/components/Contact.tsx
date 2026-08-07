@@ -27,7 +27,7 @@ const Contact = () => {
                     <Linkedin className="w-6 h-6 text-white" />
                   </div>
                   <div>
-                    <h3 className="font-semibold text-ocean-deep">LinkedIn</h3>
+                    <h3 className="font-semibold text-foreground">LinkedIn</h3>
                     <p className="text-muted-foreground">{t('contact_linkedin_desc')}</p>
                     <a
                       href="https://linkedin.com/in/malala-dev"
@@ -49,7 +49,7 @@ const Contact = () => {
                     <Globe className="w-6 h-6 text-white" />
                   </div>
                   <div>
-                    <h3 className="font-semibold text-ocean-deep">Personal Website</h3>
+                    <h3 className="font-semibold text-foreground">Personal Website</h3>
                     <p className="text-muted-foreground">{t('contact_website_desc')}</p>
                     <a
                       href="https://malala-ramangason.vercel.app"
@@ -71,7 +71,7 @@ const Contact = () => {
                     <Mail className="w-6 h-6 text-white" />
                   </div>
                   <div>
-                    <h3 className="font-semibold text-ocean-deep">Email</h3>
+                    <h3 className="font-semibold text-foreground">Email</h3>
                     <p className="text-muted-foreground">{t('contact_email_desc')}</p>
                     <a
                       href="mailto:malala@example.com"

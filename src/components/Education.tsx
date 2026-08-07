@@ -30,11 +30,11 @@ const Education = () => {
                   <Card className="hover:shadow-wave transition-all duration-300 border-ocean-light/20 bg-card/80 backdrop-blur-sm">
                     <CardHeader className="pb-3">
                       <div className="flex items-center md:justify-end gap-2 mb-2">
-                        <span className="bg-ocean-primary text-white px-3 py-1 rounded-full text-xs md:text-sm font-medium">
+                        <span className="bg-ocean-primary dark:text-ocean-primary text-white px-3 py-1 rounded-full text-xs md:text-sm font-medium">
                           {edu.m1.badge}
                         </span>
                       </div>
-                      <CardTitle className="text-lg md:text-xl text-ocean-deep">{edu.m1.title}</CardTitle>
+                      <CardTitle className="text-lg md:text-xl text-foreground">{edu.m1.title}</CardTitle>
                       <p className="text-ocean-primary font-semibold text-sm md:text-base">
                         {edu.m1.institution}
                       </p>
@@ -63,11 +63,11 @@ const Education = () => {
                   <Card className="hover:shadow-wave transition-all duration-300 border-ocean-light/20 bg-card/80 backdrop-blur-sm">
                     <CardHeader className="pb-3">
                       <div className="flex items-center gap-2 mb-2">
-                        <span className="bg-ocean-light text-ocean-deep px-3 py-1 rounded-full text-xs md:text-sm font-medium">
+                        <span className="bg-ocean-light dark:text-ocean-primary text-foreground px-3 py-1 rounded-full text-xs md:text-sm font-medium">
                           {edu.licence.badge}
                         </span>
                       </div>
-                      <CardTitle className="text-lg md:text-xl text-ocean-deep">{edu.licence.title}</CardTitle>
+                      <CardTitle className="text-lg md:text-xl text-foreground">{edu.licence.title}</CardTitle>
                       <p className="text-ocean-primary font-semibold text-sm md:text-base">
                         {edu.licence.specialization}
                       </p>

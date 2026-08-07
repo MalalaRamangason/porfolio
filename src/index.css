@@ -2,261 +2,334 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
-All colors MUST be HSL.
-*/
+/* ============================================
+   LIGHT THEMES
+   ============================================ */
 
-@layer base {
-  :root {
-    /* Ocean Blue Theme */
-    --background: 210 20% 98%;
-    --foreground: 210 40% 8%;
-
-    --card: 0 0% 100%;
-    --card-foreground: 210 40% 8%;
-
-    --popover: 0 0% 100%;
-    --popover-foreground: 210 40% 8%;
-
-    --primary: 195 100% 50%;
-    --primary-foreground: 0 0% 100%;
-
-    --secondary: 210 40% 94%;
-    --secondary-foreground: 210 40% 8%;
-
-    --muted: 210 40% 96%;
-    --muted-foreground: 210 20% 45%;
-
-    --accent: 195 85% 65%;
-    --accent-foreground: 210 40% 8%;
-
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 0 0% 100%;
-
-    --border: 210 40% 90%;
-    --input: 210 40% 90%;
-    --ring: 195 100% 50%;
-
-    /* Ocean Theme Custom Variables */
-    --ocean-deep: 210 100% 15%; /* #1A365D - Bleu profond */
-    --ocean-primary: 195 100% 50%;
-    --ocean-light: 195 85% 65%;
-    --ocean-mist: 195 50% 90%;
-    --ocean-wave: 200 80% 45%;
-    --ocean-sky: 195 80% 70%; /* Bleu ciel */
-    --accent-pink: 340 82% 85%; /* Rose pastel pour accents */
-    
-    /* Glassmorphism Variables */
-    --glass-bg: rgba(255, 255, 255, 0.1);
-    --glass-border: rgba(255, 255, 255, 0.18);
-    --glass-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
-    --glass-blur: blur(12px);
-    
-    /* Typography */
-    --font-serif: 'Playfair Display', 'Georgia', serif;
-    --font-sans: 'Inter', 'system-ui', sans-serif;
-    
-    /* Gradients */
-    --gradient-ocean: linear-gradient(135deg, hsl(195 100% 50%), hsl(210 100% 15%));
-    --gradient-wave: linear-gradient(90deg, hsl(195 85% 65%), hsl(195 100% 50%));
-    --gradient-mist: linear-gradient(180deg, hsl(195 50% 90%), transparent);
-    --gradient-hero: linear-gradient(135deg, hsl(210 100% 15%) 0%, hsl(195 80% 70%) 50%, hsl(340 82% 85%) 100%);
-    --gradient-border: linear-gradient(90deg, hsl(195 100% 50%), hsl(340 82% 85%), hsl(195 100% 50%));
-    
-    /* Shadows */
-    --shadow-ocean: 0 10px 40px -12px hsl(195 100% 50% / 0.3);
-    --shadow-wave: 0 4px 20px -4px hsl(195 100% 50% / 0.2);
-    --shadow-soft: 0 2px 10px -2px hsl(210 40% 8% / 0.1);
-    --shadow-glass: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
-    
-    /* Animations */
-    --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    --transition-wave: all 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
-    --transition-bounce: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
-
-    --radius: 0.5rem;
-
-    --sidebar-background: 0 0% 98%;
-
-    --sidebar-foreground: 240 5.3% 26.1%;
-
-    --sidebar-primary: 240 5.9% 10%;
-
-    --sidebar-primary-foreground: 0 0% 98%;
-
-    --sidebar-accent: 240 4.8% 95.9%;
-
-    --sidebar-accent-foreground: 240 5.9% 10%;
-
-    --sidebar-border: 220 13% 91%;
-
-    --sidebar-ring: 217.2 91.2% 59.8%;
-  }
-
-  .theme-pinky {
-    --background: 330 60% 98%;
-    --foreground: 330 40% 15%;
-    --card: 330 50% 99%;
-    --card-foreground: 330 40% 15%;
-    --primary: 330 85% 62%;
-    --primary-foreground: 0 0% 100%;
-    --secondary: 320 50% 93%;
-    --secondary-foreground: 330 40% 15%;
-    --muted: 325 40% 95%;
-    --muted-foreground: 330 25% 45%;
-    --accent: 300 60% 70%;
-    --accent-foreground: 330 40% 15%;
-    --border: 330 40% 88%;
-    --input: 330 40% 88%;
-    --ring: 330 85% 62%;
-    --ocean-deep: 330 60% 25%;
-    --ocean-primary: 330 85% 62%;
-    --ocean-light: 330 80% 75%;
-    --ocean-mist: 325 60% 92%;
-    --ocean-wave: 300 60% 70%;
-    --gradient-hero: linear-gradient(135deg, hsl(330 60% 25%) 0%, hsl(330 85% 62%) 50%, hsl(300 70% 80%) 100%);
-    --gradient-border: linear-gradient(90deg, hsl(330 85% 62%), hsl(300 60% 70%), hsl(330 85% 62%));
-    --shadow-ocean: 0 10px 40px -12px hsl(330 85% 62% / 0.35);
-    --shadow-wave: 0 4px 20px -4px hsl(330 85% 62% / 0.25);
-  }
-
-  .theme-forest {
-    --background: 140 20% 97%;
-    --foreground: 140 40% 8%;
-    --card: 0 0% 100%;
-    --card-foreground: 140 40% 8%;
-    --primary: 142 70% 40%;
-    --primary-foreground: 0 0% 100%;
-    --secondary: 140 30% 92%;
-    --secondary-foreground: 140 40% 8%;
-    --muted: 140 30% 94%;
-    --muted-foreground: 140 20% 45%;
-    --accent: 142 60% 55%;
-    --accent-foreground: 140 40% 8%;
-    --border: 140 30% 88%;
-    --input: 140 30% 88%;
-    --ring: 142 70% 40%;
-    --ocean-deep: 140 60% 12%;
-    --ocean-primary: 142 70% 40%;
-    --ocean-light: 142 60% 55%;
-    --ocean-mist: 140 40% 88%;
-    --ocean-wave: 145 65% 35%;
-    --gradient-hero: linear-gradient(135deg, hsl(140 60% 12%) 0%, hsl(142 60% 55%) 50%, hsl(80 60% 75%) 100%);
-  }
-
-  .theme-sunset {
-    --background: 30 30% 98%;
-    --foreground: 20 40% 8%;
-    --card: 0 0% 100%;
-    --card-foreground: 20 40% 8%;
-    --primary: 25 95% 55%;
-    --primary-foreground: 0 0% 100%;
-    --secondary: 30 40% 92%;
-    --secondary-foreground: 20 40% 8%;
-    --muted: 30 30% 94%;
-    --muted-foreground: 25 20% 45%;
-    --accent: 340 80% 60%;
-    --accent-foreground: 20 40% 8%;
-    --border: 30 30% 88%;
-    --input: 30 30% 88%;
-    --ring: 25 95% 55%;
-    --ocean-deep: 20 80% 15%;
-    --ocean-primary: 25 95% 55%;
-    --ocean-light: 35 90% 65%;
-    --ocean-mist: 30 50% 90%;
-    --ocean-wave: 340 80% 60%;
-    --gradient-hero: linear-gradient(135deg, hsl(20 80% 15%) 0%, hsl(25 95% 55%) 50%, hsl(340 80% 70%) 100%);
-  }
-
-  .dark {
-    /* Dark Ocean Theme */
-    --background: 210 100% 4%;
-    --foreground: 195 50% 90%;
-
-    --card: 210 90% 8%;
-    --card-foreground: 195 50% 90%;
-
-    --popover: 210 90% 8%;
-    --popover-foreground: 195 50% 90%;
-
-    --primary: 195 100% 60%;
-    --primary-foreground: 210 100% 4%;
-
-    --secondary: 210 50% 12%;
-    --secondary-foreground: 195 50% 90%;
-
-    --muted: 210 50% 12%;
-    --muted-foreground: 195 30% 65%;
-
-    --accent: 195 85% 65%;
-    --accent-foreground: 210 100% 4%;
-
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 0 0% 100%;
-
-    --border: 210 50% 20%;
-    --input: 210 50% 20%;
-    --ring: 195 100% 60%;
-    
-    /* Dark Ocean Custom Variables */
-    --ocean-deep: 210 100% 8%;
-    --ocean-primary: 195 100% 60%;
-    --ocean-light: 195 85% 70%;
-    --ocean-mist: 195 30% 25%;
-    --ocean-wave: 200 80% 55%;
-    
-    /* Dark Gradients */
-    --gradient-ocean: linear-gradient(135deg, hsl(195 100% 60%), hsl(210 100% 8%));
-    --gradient-wave: linear-gradient(90deg, hsl(195 85% 70%), hsl(195 100% 60%));
-    --gradient-mist: linear-gradient(180deg, hsl(195 30% 25%), transparent);
-    
-    /* Dark Shadows */
-    --shadow-ocean: 0 10px 40px -12px hsl(195 100% 60% / 0.4);
-    --shadow-wave: 0 4px 20px -4px hsl(195 100% 60% / 0.3);
-    --shadow-soft: 0 2px 10px -2px hsl(0 0% 0% / 0.3);
-    --sidebar-background: 240 5.9% 10%;
-    --sidebar-foreground: 240 4.8% 95.9%;
-    --sidebar-primary: 224.3 76.3% 48%;
-    --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 240 3.7% 15.9%;
-    --sidebar-accent-foreground: 240 4.8% 95.9%;
-    --sidebar-border: 240 3.7% 15.9%;
-    --sidebar-ring: 217.2 91.2% 59.8%;
-  }
+:root,
+html[data-theme="ocean"] {
+  --background: 210 20% 98%;
+  --foreground: 210 40% 8%;
+  --card: 0 0% 100%;
+  --card-foreground: 210 40% 8%;
+  --popover: 0 0% 100%;
+  --popover-foreground: 210 40% 8%;
+  --primary: 195 100% 50%;
+  --primary-foreground: 0 0% 100%;
+  --secondary: 210 40% 94%;
+  --secondary-foreground: 210 40% 8%;
+  --muted: 210 40% 96%;
+  --muted-foreground: 210 20% 45%;
+  --accent: 195 85% 65%;
+  --accent-foreground: 210 40% 8%;
+  --destructive: 0 84.2% 60.2%;
+  --destructive-foreground: 0 0% 100%;
+  --border: 210 40% 90%;
+  --input: 210 40% 90%;
+  --ring: 195 100% 50%;
+  --ocean-deep: 210 100% 15%;
+  --ocean-primary: 195 100% 50%;
+  --ocean-light: 195 85% 65%;
+  --ocean-mist: 195 50% 90%;
+  --ocean-wave: 200 80% 45%;
+  --gradient-ocean: linear-gradient(135deg, hsl(195 100% 50%), hsl(210 100% 15%));
+  --gradient-wave: linear-gradient(90deg, hsl(195 85% 65%), hsl(195 100% 50%));
+  --gradient-mist: linear-gradient(180deg, hsl(195 50% 90%), transparent);
+  --gradient-hero: linear-gradient(135deg, hsl(210 100% 15%) 0%, hsl(195 80% 70%) 50%, hsl(340 82% 85%) 100%);
+  --gradient-border: linear-gradient(90deg, hsl(195 100% 50%), hsl(340 82% 85%), hsl(195 100% 50%));
+  --shadow-ocean: 0 10px 40px -12px hsl(195 100% 50% / 0.3);
+  --shadow-wave: 0 4px 20px -4px hsl(195 100% 50% / 0.2);
+  --shadow-soft: 0 2px 10px -2px hsl(210 40% 8% / 0.1);
+  --radius: 0.5rem;
+  --font-serif: 'Playfair Display', 'Georgia', serif;
+  --font-sans: 'Inter', 'system-ui', sans-serif;
+  --glass-bg: rgba(255, 255, 255, 0.1);
+  --glass-border: rgba(255, 255, 255, 0.18);
+  --glass-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+  --glass-blur: blur(12px);
+  --sidebar-background: 0 0% 98%;
+  --sidebar-foreground: 240 5.3% 26.1%;
+  --sidebar-primary: 240 5.9% 10%;
+  --sidebar-primary-foreground: 0 0% 98%;
+  --sidebar-accent: 240 4.8% 95.9%;
+  --sidebar-accent-foreground: 240 5.9% 10%;
+  --sidebar-border: 220 13% 91%;
+  --sidebar-ring: 217.2 91.2% 59.8%;
 }
 
+html[data-theme="pinky"] {
+  --background: 330 60% 98%;
+  --foreground: 330 40% 15%;
+  --card: 330 50% 99%;
+  --card-foreground: 330 40% 15%;
+  --primary: 330 85% 62%;
+  --primary-foreground: 0 0% 100%;
+  --secondary: 320 50% 93%;
+  --secondary-foreground: 330 40% 15%;
+  --muted: 325 40% 95%;
+  --muted-foreground: 330 25% 45%;
+  --accent: 300 60% 70%;
+  --accent-foreground: 330 40% 15%;
+  --destructive: 0 84.2% 60.2%;
+  --destructive-foreground: 0 0% 100%;
+  --border: 330 40% 88%;
+  --input: 330 40% 88%;
+  --ring: 330 85% 62%;
+  --ocean-deep: 330 60% 25%;
+  --ocean-primary: 330 85% 62%;
+  --ocean-light: 330 80% 75%;
+  --ocean-mist: 325 60% 92%;
+  --ocean-wave: 300 60% 70%;
+  --gradient-ocean: linear-gradient(135deg, hsl(330 85% 62%), hsl(330 60% 25%));
+  --gradient-wave: linear-gradient(90deg, hsl(330 80% 75%), hsl(330 85% 62%));
+  --gradient-hero: linear-gradient(135deg, hsl(330 60% 25%) 0%, hsl(330 85% 62%) 50%, hsl(300 70% 80%) 100%);
+  --gradient-border: linear-gradient(90deg, hsl(330 85% 62%), hsl(300 60% 70%), hsl(330 85% 62%));
+  --shadow-ocean: 0 10px 40px -12px hsl(330 85% 62% / 0.35);
+  --shadow-wave: 0 4px 20px -4px hsl(330 85% 62% / 0.25);
+  --shadow-soft: 0 2px 10px -2px hsl(330 40% 15% / 0.1);
+}
+
+html[data-theme="forest"] {
+  --background: 140 20% 97%;
+  --foreground: 140 40% 8%;
+  --card: 140 15% 99%;
+  --card-foreground: 140 40% 8%;
+  --primary: 142 70% 40%;
+  --primary-foreground: 0 0% 100%;
+  --secondary: 140 30% 92%;
+  --secondary-foreground: 140 40% 8%;
+  --muted: 140 30% 94%;
+  --muted-foreground: 140 20% 45%;
+  --accent: 142 60% 55%;
+  --accent-foreground: 140 40% 8%;
+  --destructive: 0 84.2% 60.2%;
+  --destructive-foreground: 0 0% 100%;
+  --border: 140 30% 88%;
+  --input: 140 30% 88%;
+  --ring: 142 70% 40%;
+  --ocean-deep: 140 60% 12%;
+  --ocean-primary: 142 70% 40%;
+  --ocean-light: 142 60% 55%;
+  --ocean-mist: 140 40% 88%;
+  --ocean-wave: 145 65% 35%;
+  --gradient-ocean: linear-gradient(135deg, hsl(142 70% 40%), hsl(140 60% 12%));
+  --gradient-wave: linear-gradient(90deg, hsl(142 60% 55%), hsl(142 70% 40%));
+  --gradient-hero: linear-gradient(135deg, hsl(140 60% 12%) 0%, hsl(142 60% 55%) 50%, hsl(80 60% 75%) 100%);
+  --gradient-border: linear-gradient(90deg, hsl(142 70% 40%), hsl(80 60% 75%), hsl(142 70% 40%));
+  --shadow-ocean: 0 10px 40px -12px hsl(142 70% 40% / 0.35);
+  --shadow-wave: 0 4px 20px -4px hsl(142 70% 40% / 0.25);
+  --shadow-soft: 0 2px 10px -2px hsl(140 40% 8% / 0.1);
+}
+
+html[data-theme="sunset"] {
+  --background: 30 30% 97%;
+  --foreground: 20 40% 8%;
+  --card: 30 25% 99%;
+  --card-foreground: 20 40% 8%;
+  --primary: 25 95% 55%;
+  --primary-foreground: 0 0% 100%;
+  --secondary: 30 40% 92%;
+  --secondary-foreground: 20 40% 8%;
+  --muted: 30 30% 94%;
+  --muted-foreground: 25 20% 45%;
+  --accent: 340 80% 60%;
+  --accent-foreground: 20 40% 8%;
+  --destructive: 0 84.2% 60.2%;
+  --destructive-foreground: 0 0% 100%;
+  --border: 30 30% 88%;
+  --input: 30 30% 88%;
+  --ring: 25 95% 55%;
+  --ocean-deep: 20 80% 15%;
+  --ocean-primary: 25 95% 55%;
+  --ocean-light: 35 90% 65%;
+  --ocean-mist: 30 50% 90%;
+  --ocean-wave: 340 80% 60%;
+  --gradient-ocean: linear-gradient(135deg, hsl(25 95% 55%), hsl(20 80% 15%));
+  --gradient-wave: linear-gradient(90deg, hsl(35 90% 65%), hsl(25 95% 55%));
+  --gradient-hero: linear-gradient(135deg, hsl(20 80% 15%) 0%, hsl(25 95% 55%) 50%, hsl(340 80% 70%) 100%);
+  --gradient-border: linear-gradient(90deg, hsl(25 95% 55%), hsl(340 80% 60%), hsl(25 95% 55%));
+  --shadow-ocean: 0 10px 40px -12px hsl(25 95% 55% / 0.35);
+  --shadow-wave: 0 4px 20px -4px hsl(25 95% 55% / 0.25);
+  --shadow-soft: 0 2px 10px -2px hsl(20 40% 8% / 0.1);
+}
+
+/* ============================================
+   DARK THEMES
+   ============================================ */
+
+html.dark,
+html.dark[data-theme="ocean"] {
+  --background: 210 100% 4%;
+  --foreground: 195 50% 90%;
+  --card: 210 90% 8%;
+  --card-foreground: 195 50% 90%;
+  --popover: 210 90% 8%;
+  --popover-foreground: 195 50% 90%;
+  --primary: 195 100% 60%;
+  --primary-foreground: 210 100% 4%;
+  --secondary: 210 50% 12%;
+  --secondary-foreground: 195 50% 90%;
+  --muted: 210 50% 12%;
+  --muted-foreground: 195 30% 65%;
+  --accent: 195 85% 65%;
+  --accent-foreground: 210 100% 4%;
+  --destructive: 0 84.2% 60.2%;
+  --destructive-foreground: 0 0% 100%;
+  --border: 210 50% 20%;
+  --input: 210 50% 20%;
+  --ring: 195 100% 60%;
+  --ocean-deep: 210 100% 8%;
+  --ocean-primary: 195 100% 60%;
+  --ocean-light: 195 85% 70%;
+  --ocean-mist: 195 30% 25%;
+  --ocean-wave: 200 80% 55%;
+  --gradient-ocean: linear-gradient(135deg, hsl(195 100% 60%), hsl(210 100% 8%));
+  --gradient-wave: linear-gradient(90deg, hsl(195 85% 70%), hsl(195 100% 60%));
+  --gradient-hero: linear-gradient(135deg, hsl(210 100% 4%) 0%, hsl(210 100% 12%) 50%, hsl(195 100% 20%) 100%);
+  --gradient-mist: linear-gradient(180deg, hsl(195 30% 25%), transparent);
+  --shadow-ocean: 0 10px 40px -12px hsl(195 100% 60% / 0.4);
+  --shadow-wave: 0 4px 20px -4px hsl(195 100% 60% / 0.3);
+  --shadow-soft: 0 2px 10px -2px hsl(0 0% 0% / 0.3);
+}
+
+html.dark[data-theme="pinky"] {
+  --background: 330 40% 8%;
+  --foreground: 330 60% 92%;
+  --card: 330 35% 12%;
+  --card-foreground: 330 60% 92%;
+  --popover: 330 35% 12%;
+  --popover-foreground: 330 60% 92%;
+  --primary: 330 85% 70%;
+  --primary-foreground: 330 40% 8%;
+  --secondary: 330 30% 16%;
+  --secondary-foreground: 330 60% 92%;
+  --muted: 330 30% 16%;
+  --muted-foreground: 330 30% 65%;
+  --accent: 300 60% 75%;
+  --accent-foreground: 330 40% 8%;
+  --border: 330 30% 22%;
+  --input: 330 30% 22%;
+  --ring: 330 85% 70%;
+  --ocean-deep: 330 40% 6%;
+  --ocean-primary: 330 85% 70%;
+  --ocean-light: 330 80% 80%;
+  --ocean-mist: 330 25% 20%;
+  --ocean-wave: 300 60% 75%;
+  --gradient-ocean: linear-gradient(135deg, hsl(330 85% 70%), hsl(330 40% 8%));
+  --gradient-wave: linear-gradient(90deg, hsl(330 80% 80%), hsl(330 85% 70%));
+  --gradient-hero: linear-gradient(135deg, hsl(330 50% 6%) 0%, hsl(330 60% 25%) 50%, hsl(300 50% 35%) 100%);
+  --shadow-ocean: 0 10px 40px -12px hsl(330 85% 70% / 0.4);
+  --shadow-wave: 0 4px 20px -4px hsl(330 85% 70% / 0.3);
+  --shadow-soft: 0 2px 10px -2px hsl(0 0% 0% / 0.3);
+}
+
+html.dark[data-theme="forest"] {
+  --background: 140 40% 5%;
+  --foreground: 140 50% 90%;
+  --card: 140 35% 9%;
+  --card-foreground: 140 50% 90%;
+  --popover: 140 35% 9%;
+  --popover-foreground: 140 50% 90%;
+  --primary: 142 70% 50%;
+  --primary-foreground: 140 40% 5%;
+  --secondary: 140 30% 13%;
+  --secondary-foreground: 140 50% 90%;
+  --muted: 140 30% 13%;
+  --muted-foreground: 140 25% 60%;
+  --accent: 142 60% 60%;
+  --accent-foreground: 140 40% 5%;
+  --border: 140 30% 18%;
+  --input: 140 30% 18%;
+  --ring: 142 70% 50%;
+  --ocean-deep: 140 40% 4%;
+  --ocean-primary: 142 70% 50%;
+  --ocean-light: 142 60% 65%;
+  --ocean-mist: 140 25% 18%;
+  --ocean-wave: 145 65% 45%;
+  --gradient-ocean: linear-gradient(135deg, hsl(142 70% 50%), hsl(140 40% 5%));
+  --gradient-wave: linear-gradient(90deg, hsl(142 60% 65%), hsl(142 70% 50%));
+  --gradient-hero: linear-gradient(135deg, hsl(140 50% 4%) 0%, hsl(142 50% 18%) 50%, hsl(80 40% 25%) 100%);
+  --shadow-ocean: 0 10px 40px -12px hsl(142 70% 50% / 0.4);
+  --shadow-wave: 0 4px 20px -4px hsl(142 70% 50% / 0.3);
+  --shadow-soft: 0 2px 10px -2px hsl(0 0% 0% / 0.3);
+}
+
+html.dark[data-theme="sunset"] {
+  --background: 20 40% 5%;
+  --foreground: 30 50% 90%;
+  --card: 20 35% 9%;
+  --card-foreground: 30 50% 90%;
+  --popover: 20 35% 9%;
+  --popover-foreground: 30 50% 90%;
+  --primary: 25 95% 65%;
+  --primary-foreground: 20 40% 5%;
+  --secondary: 25 30% 13%;
+  --secondary-foreground: 30 50% 90%;
+  --muted: 25 30% 13%;
+  --muted-foreground: 25 25% 60%;
+  --accent: 340 80% 70%;
+  --accent-foreground: 20 40% 5%;
+  --border: 25 30% 18%;
+  --input: 25 30% 18%;
+  --ring: 25 95% 65%;
+  --ocean-deep: 20 40% 4%;
+  --ocean-primary: 25 95% 65%;
+  --ocean-light: 35 90% 72%;
+  --ocean-mist: 25 25% 18%;
+  --ocean-wave: 340 80% 68%;
+  --gradient-ocean: linear-gradient(135deg, hsl(25 95% 65%), hsl(20 40% 5%));
+  --gradient-wave: linear-gradient(90deg, hsl(35 90% 72%), hsl(25 95% 65%));
+  --gradient-hero: linear-gradient(135deg, hsl(20 50% 4%) 0%, hsl(25 70% 20%) 50%, hsl(340 60% 30%) 100%);
+  --shadow-ocean: 0 10px 40px -12px hsl(25 95% 65% / 0.4);
+  --shadow-wave: 0 4px 20px -4px hsl(25 95% 65% / 0.3);
+  --shadow-soft: 0 2px 10px -2px hsl(0 0% 0% / 0.3);
+}
+
+/* ============================================
+   BASE STYLES
+   ============================================ */
+
 @layer base {
-  * {
-    @apply border-border;
-  }
+  * { @apply border-border; }
 
   body {
     @apply bg-background text-foreground;
     scroll-behavior: smooth;
+    transition: background-color 0.3s ease, color 0.3s ease;
   }
+
+  .bg-background { background-color: hsl(var(--background)) !important; }
+  .bg-card { background-color: hsl(var(--card)) !important; }
+  .bg-muted { background-color: hsl(var(--muted)) !important; }
+  .text-foreground { color: hsl(var(--foreground)) !important; }
+  .text-muted-foreground { color: hsl(var(--muted-foreground)) !important; }
+  .text-ocean-primary { color: hsl(var(--ocean-primary)) !important; }
+  .text-ocean-deep { color: hsl(var(--ocean-deep)) !important; }
+  .text-ocean-wave { color: hsl(var(--ocean-wave)) !important; }
+  .text-ocean-light { color: hsl(var(--ocean-light)) !important; }
+  .border-ocean-primary { border-color: hsl(var(--ocean-primary)) !important; }
+  .border-border { border-color: hsl(var(--border)) !important; }
+  .bg-ocean-mist { background-color: hsl(var(--ocean-mist)) !important; }
+  .bg-ocean-primary { background-color: hsl(var(--ocean-primary)) !important; }
+  .bg-ocean-light { background-color: hsl(var(--ocean-light)) !important; }
 }
 
+@layer base {
+  html.dark .bg-ocean-primary { background-color: hsl(var(--ocean-primary) / 0.2) !important; }
+  html.dark .bg-ocean-light { background-color: hsl(var(--ocean-light) / 0.15) !important; }
+}
+
+/* ============================================
+   UTILITIES
+   ============================================ */
+
 @layer utilities {
-  .animate-float {
-    animation: float 6s ease-in-out infinite;
-  }
-  
-  .animate-wave {
-    animation: wave 8s ease-in-out infinite;
-  }
-  
-  .animate-spin-slow {
-    animation: spin 20s linear infinite;
-  }
-  
-  .delay-500 {
-    animation-delay: 500ms;
-  }
-  
-  .delay-1000 {
-    animation-delay: 1000ms;
-  }
-  
+  .animate-float { animation: float 6s ease-in-out infinite; }
+  .animate-wave { animation: wave 8s ease-in-out infinite; }
+  .animate-spin-slow { animation: spin 20s linear infinite; }
+  .delay-500 { animation-delay: 500ms; }
+  .delay-1000 { animation-delay: 1000ms; }
+
   .glass-morphism {
     background: var(--glass-bg);
     backdrop-filter: var(--glass-blur);
@@ -264,92 +337,33 @@ All colors MUST be HSL.
     border: 1px solid var(--glass-border);
     box-shadow: var(--glass-shadow);
   }
-  
-  .gradient-border {
-    position: relative;
-    background: linear-gradient(135deg, hsl(210 100% 15%), hsl(210 90% 20%));
-    background-clip: padding-box;
-  }
-  
-  .gradient-border::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    border-radius: inherit;
-    padding: 2px;
-    background: var(--gradient-border);
-    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-    -webkit-mask-composite: xor;
-    mask-composite: exclude;
-    animation: gradient-rotate 3s linear infinite;
-  }
-  
-  .font-serif {
-    font-family: var(--font-serif);
-  }
-  
-  .font-sans {
-    font-family: var(--font-sans);
-  }
+
+  .font-serif { font-family: var(--font-serif); }
+  .font-sans { font-family: var(--font-sans); }
 }
 
 @keyframes float {
-  0%, 100% {
-    transform: translateY(0px);
-  }
-  50% {
-    transform: translateY(-20px);
-  }
+  0%, 100% { transform: translateX(0) translateY(0); }
+  25% { transform: translateX(10px) translateY(-10px); }
+  50% { transform: translateX(-10px) translateY(-5px); }
+  75% { transform: translateX(5px) translateY(10px); }
 }
 
 @keyframes wave {
-  0%, 100% {
-    transform: translateX(0px) rotate(0deg);
-  }
-  25% {
-    transform: translateX(10px) rotate(1deg);
-  }
-  75% {
-    transform: translateX(-10px) rotate(-1deg);
-  }
+  0%, 100% { transform: translateX(0px) rotate(0deg); }
+  25% { transform: translateX(10px) rotate(1deg); }
+  75% { transform: translateX(-10px) rotate(-1deg); }
 }
 
 @keyframes gradient-rotate {
-  0% {
-    background-position: 0% 50%;
-  }
-  50% {
-    background-position: 100% 50%;
-  }
-  100% {
-    background-position: 0% 50%;
-  }
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
 }
 
 @keyframes spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
 }
 
-@keyframes float {
-  0%, 100% {
-    transform: translateX(0) translateY(0);
-  }
-  25% {
-    transform: translateX(10px) translateY(-10px);
-  }
-  50% {
-    transform: translateX(-10px) translateY(-5px);
-  }
-  75% {
-    transform: translateX(5px) translateY(10px);
-  }
-}
-
-.animate-float {
-  animation: float ease-in-out infinite;
-}
+.animate-float { animation: float ease-in-out infinite; }
