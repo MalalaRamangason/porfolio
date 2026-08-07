@@ -192,14 +192,14 @@ export const certificatesData = {
       organization: "Orange Digital Center Madagascar",
       date: "March 2025",
       type: "Course Completion",
-      image: "/certificates/adobe-after-effects.jpg"
+      image: "/AFE_certificate.png"
     },
     {
       title: "Figma for UX/UI Design",
       organization: "Orange Digital Center Madagascar",
       date: "February 2024",
       type: "Course Completion",
-      image: "/certificates/figma-ux-ui.jpg"
+      image: "/Figma_certificate.png"
     },
   ],
   fr: [
@@ -208,14 +208,14 @@ export const certificatesData = {
       organization: "Orange Digital Center Madagascar",
       date: "Mars 2025",
       type: "Certification Complétée",
-      image: "/certificates/adobe-after-effects.jpg"
+      image: "/AFE_certificate.png"
     },
     {
       title: "Figma pour Design UX/UI",
       organization: "Orange Digital Center Madagascar",
       date: "Février 2024",
       type: "Certification Complétée",
-      image: "/certificates/figma-ux-ui.jpg"
+      image: "/Figma_certificate.png"
     },
   ]
 };
