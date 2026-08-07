@@ -2,7 +2,7 @@ import { Badge } from "@/components/ui/badge";
 import { ExternalLink, Folder, AppWindow, Link2, UtensilsCrossed, X } from "lucide-react";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { projectsData } from "@/lib/data";
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
 import {
   Dialog,
@@ -18,22 +18,26 @@ const Projects = () => {
   const [selectedProject, setSelectedProject] = useState<any>(null);
   const [isOpen, setIsOpen] = useState(false);
   const containerRef = useRef<HTMLDivElement>(null);
-  
-  // Animation liée au scroll
+  const [isMobile, setIsMobile] = useState(() => window.innerWidth < 768);
+
+  useEffect(() => {
+    const check = () => setIsMobile(window.innerWidth < 768);
+    window.addEventListener("resize", check);
+    return () => window.removeEventListener("resize", check);
+  }, []);
+
   const { scrollYProgress } = useScroll({
     target: containerRef,
     offset: ["start start", "end start"]
   });
 
-  // Transformations basées sur le scroll
   const scale = useTransform(scrollYProgress, [0, 0.5], [2.5, 1]);
   const opacity = useTransform(scrollYProgress, [0, 0.3, 0.5], [0, 0.5, 1]);
   const cardOpacity = useTransform(scrollYProgress, [0.2, 0.4], [0, 1]);
   const contentOpacity = useTransform(scrollYProgress, [0.3, 0.5], [0, 1]);
-  
-  console.log('Language:', language);
-  console.log('Number of projects:', projects.length);
-  console.log('Projects:', projects);
+  const headerOpacity = useTransform(scrollYProgress, [0, 0.1], [1, 0]);
+  const gridOpacity = useTransform(scrollYProgress, [0, 0.1], [0, 1]);
+  const scrollHintOpacity = useTransform(scrollYProgress, [0, 0.2], [1, 0]);
 
   const iconMap: { [key: string]: any } = {
     'Appistery': AppWindow,
@@ -46,6 +50,115 @@ const Projects = () => {
     setIsOpen(true);
   };
 
+  if (isMobile) {
+    return (
+      <section id="projects" className="py-20 bg-background">
+        <div className="container mx-auto px-4">
+          <div className="text-center mb-10">
+            <div className="flex items-center justify-center gap-2 mb-4">
+              <Folder className="w-8 h-8 text-ocean-primary" />
+              <h2 className="text-3xl font-bold text-foreground">{t('projects_title')}</h2>
+            </div>
+            <p className="text-muted-foreground text-base max-w-2xl mx-auto">{t('projects_subtitle')}</p>
+          </div>
+          <div className="flex flex-col gap-6">
+            {projects.map((project, index) => (
+              <div
+                key={index}
+                onClick={() => handleProjectClick(project)}
+                className="group relative rounded-2xl border bg-card shadow-lg overflow-hidden cursor-pointer"
+              >
+                <div className="relative h-48 w-full overflow-hidden bg-gradient-to-br from-ocean-mist to-accent/20">
+                  <img src={project.imageLight} alt={project.title} className="w-full h-full object-cover object-top dark:hidden" />
+                  <img src={project.imageDark} alt={project.title} className="w-full h-full object-cover object-top hidden dark:block" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-card/80 via-transparent to-transparent" />
+                  <a href={project.url} target="_blank" rel="noopener noreferrer" onClick={(e) => e.stopPropagation()} className="absolute top-4 right-4 z-10">
+                    <div className="w-10 h-10 flex items-center justify-center rounded-full bg-card/90 backdrop-blur-sm text-ocean-primary hover:bg-ocean-primary hover:text-white transition-all duration-300 shadow-lg">
+                      <ExternalLink className="w-5 h-5" />
+                    </div>
+                  </a>
+                </div>
+                <div className="p-5 flex flex-col gap-3 bg-card">
+                  <div className="flex items-center gap-3">
+                    <div className="w-10 h-10 flex items-center justify-center rounded-lg bg-gradient-to-br from-ocean-primary to-ocean-wave text-white shadow-md">
+                      {(() => { const I = iconMap[project.title]; return I ? <I className="w-5 h-5" /> : null; })()}
+                    </div>
+                    <h3 className="text-xl font-bold text-foreground">{project.title}</h3>
+                  </div>
+                  <div>
+                    <h4 className="text-xs font-semibold text-muted-foreground uppercase tracking-wider mb-1">{t('projects_problem')}</h4>
+                    <p className="text-foreground/80 text-xs leading-relaxed line-clamp-3">{project.problem}</p>
+                  </div>
+                  <div className="bg-ocean-mist/40 rounded-lg p-3 border border-ocean-light/30">
+                    <h4 className="text-xs font-semibold text-foreground uppercase tracking-wider mb-1">{t('projects_solution')}</h4>
+                    <p className="text-foreground/80 text-xs leading-relaxed line-clamp-3">{project.solution}</p>
+                  </div>
+                  <div className="flex flex-wrap gap-1.5 pt-2 border-t border-border">
+                    {project.categories?.map((category, i) => (
+                      <Badge key={i} className="bg-ocean-primary/10 text-ocean-deep border-ocean-light/50 text-[10px] px-2 py-0.5">{category}</Badge>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* Modal */}
+        <Dialog open={isOpen} onOpenChange={setIsOpen}>
+          <DialogContent className="max-w-4xl max-h-[90vh] overflow-hidden p-0 bg-card border-none shadow-2xl">
+            {selectedProject && (
+              <div className="relative overflow-hidden">
+                <div className="relative h-72 overflow-hidden">
+                  <img src={selectedProject.imageLight} alt={selectedProject.title} className="w-full h-full object-cover object-top dark:hidden" />
+                  <img src={selectedProject.imageDark} alt={selectedProject.title} className="w-full h-full object-cover object-top hidden dark:block" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent" />
+                  <div className="absolute bottom-0 left-0 right-0 p-8">
+                    <div className="flex items-center gap-4">
+                      <div className="w-14 h-14 flex items-center justify-center rounded-xl bg-white/10 backdrop-blur-xl border border-white/20 text-white">
+                        {(() => { const I = iconMap[selectedProject.title]; return I ? <I className="w-7 h-7" /> : null; })()}
+                      </div>
+                      <h2 className="text-3xl font-bold text-white">{selectedProject.title}</h2>
+                    </div>
+                  </div>
+                  <button onClick={() => setIsOpen(false)} className="absolute top-6 right-6 w-9 h-9 flex items-center justify-center rounded-full bg-white/10 hover:bg-white/20 backdrop-blur-xl border border-white/20 text-white transition-all duration-200">
+                    <X className="w-5 h-5" />
+                  </button>
+                </div>
+                <div className="p-8 space-y-8 max-h-[calc(90vh-288px)] overflow-y-auto">
+                  <div>
+                    <h3 className="text-sm font-semibold text-muted-foreground uppercase tracking-wide mb-3">{t('projects_problem')}</h3>
+                    <p className="text-base text-foreground/80 leading-relaxed">{selectedProject.problem}</p>
+                  </div>
+                  <div className="h-px bg-gradient-to-r from-transparent via-border to-transparent" />
+                  <div>
+                    <h3 className="text-sm font-semibold text-ocean-primary uppercase tracking-wide mb-3">{t('projects_solution')}</h3>
+                    <p className="text-base text-foreground/80 leading-relaxed">{selectedProject.solution}</p>
+                  </div>
+                  <div className="h-px bg-gradient-to-r from-transparent via-border to-transparent" />
+                  <div className="space-y-4">
+                    <div>
+                      <h4 className="text-xs font-semibold text-muted-foreground uppercase tracking-wide mb-3">{t('projects_categories')}</h4>
+                      <div className="flex flex-wrap gap-2">
+                        {selectedProject.categories?.map((category: string, i: number) => (
+                          <span key={i} className="px-3 py-1.5 text-xs font-medium text-ocean-deep bg-ocean-mist/50 rounded-full border border-ocean-light/50">{category}</span>
+                        ))}
+                      </div>
+                    </div>
+                    <a href={selectedProject.url} target="_blank" rel="noopener noreferrer" className="flex items-center justify-center gap-2 w-full px-5 py-3 bg-ocean-primary hover:bg-ocean-wave text-white text-sm font-medium rounded-lg transition-all duration-200 shadow-lg">
+                      <ExternalLink className="w-4 h-4" />
+                      {t('projects_view')}
+                    </a>
+                  </div>
+                </div>
+              </div>
+            )}
+          </DialogContent>
+        </Dialog>
+      </section>
+    );
+  }
+
   return (
     <section 
       ref={containerRef}
@@ -56,9 +169,7 @@ const Projects = () => {
       <div className="sticky top-0 h-screen flex flex-col items-center justify-center overflow-hidden py-20">
         {/* Header fixe - visible uniquement avant le scroll */}
         <motion.div 
-          style={{ 
-            opacity: useTransform(scrollYProgress, [0, 0.1], [1, 0]),
-          }}
+          style={{ opacity: headerOpacity }}
           className="text-center z-10"
         >
           <div className="flex items-center justify-center gap-2 mb-4">
@@ -72,10 +183,7 @@ const Projects = () => {
 
         {/* Grille animée - visible uniquement pendant/après le scroll */}
         <motion.div
-          style={{ 
-            scale,
-            opacity: useTransform(scrollYProgress, [0, 0.1], [0, 1])
-          }}
+          style={{ scale, opacity: gridOpacity }}
           className="absolute inset-0 flex items-center justify-center w-full max-w-7xl mx-auto px-4 md:px-6"
         >
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
@@ -207,7 +315,7 @@ const Projects = () => {
 
         {/* Texte d'indication de scroll */}
         <motion.div
-          style={{ opacity: useTransform(scrollYProgress, [0, 0.2], [1, 0]) }}
+          style={{ opacity: scrollHintOpacity }}
           className="absolute bottom-8 left-1/2 -translate-x-1/2 text-center z-10"
         >
           <p className="text-muted-foreground text-sm md:text-base font-medium mb-2">
