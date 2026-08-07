@@ -95,7 +95,7 @@ const Projects = () => {
                   </div>
                   <div className="flex flex-wrap gap-1.5 pt-2 border-t border-border">
                     {project.categories?.map((category, i) => (
-                      <Badge key={i} className="bg-ocean-primary/10 text-ocean-deep border-ocean-light/50 text-[10px] px-2 py-0.5">{category}</Badge>
+                      <Badge key={i} className="bg-ocean-primary/10 text-ocean-primary border-ocean-light/50 text-[10px] px-2 py-0.5">{category}</Badge>
                     ))}
                   </div>
                 </div>
@@ -293,7 +293,7 @@ const Projects = () => {
                         {project.categories?.map((category, i) => (
                           <Badge 
                             key={i}
-                            className="bg-ocean-primary/10 text-ocean-deep border-ocean-light/50 hover:bg-ocean-primary/20 transition-colors text-[10px] px-2 py-0.5"
+                            className="bg-ocean-primary/10 text-ocean-primary border-ocean-light/50 hover:bg-ocean-primary/20 transition-colors text-[10px] px-2 py-0.5"
                           >
                             {category}
                           </Badge>
